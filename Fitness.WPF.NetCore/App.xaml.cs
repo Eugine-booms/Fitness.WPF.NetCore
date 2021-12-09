@@ -1,4 +1,5 @@
-﻿using Fitness.WPF.NetCore.Services;
+﻿using Fitness.WPF.NetCore.Data;
+using Fitness.WPF.NetCore.Services;
 using Fitness.WPF.NetCore.ViewModel;
 
 using Microsoft.Extensions.DependencyInjection;
@@ -29,9 +30,8 @@ namespace Fitness.WPF.NetCore
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) =>
            services
             .RegisterViewModels()
-            .RegisterServices();
-
-           //.RegisterDataBase(host.Configuration.GetSection("Database"))
+            .RegisterServices()
+            .RegisterDataBase(host.Configuration.GetSection("Database"));
            //.RegisterRepositoryesInDB();
         public static IServiceProvider Services => Host.Services;
         protected override async void OnStartup(StartupEventArgs e)
