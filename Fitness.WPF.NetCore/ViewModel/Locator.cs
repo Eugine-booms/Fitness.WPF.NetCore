@@ -1,4 +1,4 @@
-﻿using Boomsa.WPF.BaseLib.ViewModel.Base;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
-   public class MainViewModel: ViewModelBase
+    public class Locator
     {
-
+        public MainViewModel GetMainVM() => App.Services.GetRequiredService<MainViewModel>();
     }
 }

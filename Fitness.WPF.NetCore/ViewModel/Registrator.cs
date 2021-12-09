@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
-  static internal  class Registrator
+    internal static class Registrator
+
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection services) => services
+        internal static IServiceCollection RegisterViewModels(this IServiceCollection services) => services
             .AddSingleton<MainViewModel>();
+
+
     }
 }

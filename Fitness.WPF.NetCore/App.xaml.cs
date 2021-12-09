@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Fitness.WPF.NetCore.Services;
+using Fitness.WPF.NetCore.ViewModel;
+
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using System;
@@ -17,16 +20,17 @@ namespace Fitness.WPF.NetCore
     public partial class App : Application
     {
         public static bool IsDesignTime { get; private set; } = true;
-        public Window ActiveWindow = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive == true);
-        public Window FocusedWindow = App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsFocused == true);
-        public Window CurrentWindow => FocusedWindow ?? ActiveWindow; 
+        public static Window ActiveWindow => App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive == true);
+        public static Window FocusedWindow => App.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsFocused == true);
+        public static Window CurrentWindow => FocusedWindow ?? ActiveWindow; 
 
         private static IHost _host;
         public static IHost Host => _host ??= _host = Program.CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) =>
            services
-           .RegisterServices()
-           .RegisterViewModels();
+            .RegisterViewModels()
+            .RegisterServices();
+
            //.RegisterDataBase(host.Configuration.GetSection("Database"))
            //.RegisterRepositoryesInDB();
         public static IServiceProvider Services => Host.Services;

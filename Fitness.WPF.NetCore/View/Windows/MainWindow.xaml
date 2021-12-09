@@ -5,8 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fitness.WPF.NetCore"
         mc:Ignorable="d"
+        DataContext="{Binding Path=GetMainVM, Source={StaticResource MainVM}}"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <!--<Window.Resources>
+        <cmd:CloseAppCommand x:Key="CloseAppCommand"/>
+    </Window.Resources>-->
 
-    </Grid>
+
+    <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
+
+        <Menu DockPanel.Dock="Top" Height="50" VerticalAlignment="Top" Background="LightGray">
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" Margin="0 0 5 0" />
+                        <TextBlock>Menu</TextBlock>
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Header="User" >
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" ></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl DockPanel.Dock="Top" >
+            <TabItem Name="MainTab" Header="Главная">
+                <StackPanel x:Name="MainTabGrid">
+                    <Border MinHeight="150" MinWidth="150" Background="Gray" VerticalAlignment="Top" Padding="30" Margin="30" CornerRadius="30">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"></DropShadowEffect>
+                        </Border.Effect>
+                        <TextBlock x:Name="CaloriesСounter" FontSize="30" FontWeight="Bold" Text="Calories" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="25" />
+                    </Border>
+
+                </StackPanel>
+            </TabItem>
+            <TabItem Name="diaryTab" Header="Дневник">
+
+            </TabItem>
+            <TabItem Name="iTab" Header="Я">
+
+            </TabItem>
+        </TabControl>
+
+
+
+
+
+    </DockPanel>
+
 </Window>

@@ -13,7 +13,8 @@ namespace Fitness.WPF.NetCore.Services
 {
   static internal  class Registrator
     {
-        public static IServiceCollection RegisterServices(IServiceCollection services) => services
+        internal static IServiceCollection RegisterServices(this IServiceCollection services) => services
             .AddTransient<IUserDialog, UserDialog>();
+           
     }
 }
