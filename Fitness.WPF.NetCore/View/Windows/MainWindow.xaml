@@ -3,15 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fitness.WPF.NetCore"
+        xmlns:local="clr-namespace:Fitness.WPF.NetCore" xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         DataContext="{Binding Path=GetMainVM, Source={StaticResource MainVM}}"
         Title="MainWindow" Height="450" Width="800">
-    
-    <!--<Window.Resources>
-        <cmd:CloseAppCommand x:Key="CloseAppCommand"/>
-    </Window.Resources>-->
-
 
     <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
 
@@ -19,7 +14,7 @@
             <MenuItem>
                 <MenuItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Ellipse Height="10" Width="10" Fill="Black" Margin="0 0 5 0" />
+                        <md:PackIcon Kind="MenuDown" Height="18" Width="16"/>
                         <TextBlock>Menu</TextBlock>
                     </StackPanel>
                 </MenuItem.Header>
@@ -32,6 +27,7 @@
         <TabControl DockPanel.Dock="Top" >
             <TabItem Name="MainTab" Header="Главная">
                 <StackPanel x:Name="MainTabGrid">
+                    <CheckBox Content="sdfdsf" Style="{StaticResource SwitcherCheckBoxStyle}"/>
                     <Border MinHeight="150" MinWidth="150" Background="Gray" VerticalAlignment="Top" Padding="30" Margin="30" CornerRadius="30">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"></DropShadowEffect>

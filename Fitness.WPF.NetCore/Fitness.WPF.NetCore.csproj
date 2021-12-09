@@ -22,4 +22,15 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Stiles\Resources\Colors\Brushes.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Stiles\Resources\EasingFunctions.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

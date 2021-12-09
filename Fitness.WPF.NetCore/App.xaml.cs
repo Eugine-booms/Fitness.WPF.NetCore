@@ -38,7 +38,11 @@ namespace Fitness.WPF.NetCore
         {
             IsDesignTime = false;
             var host = Host;
-            await host.RunAsync().ConfigureAwait(false);
+            //using (var scope = Services.CreateScope())
+            //{
+            //    scope.ServiceProvider.GetRequiredService<DBInitializer>();  //
+            //}
+            await host.StartAsync().ConfigureAwait(false);
             base.OnStartup(e);
         }
         protected override async void OnExit(ExitEventArgs e)
