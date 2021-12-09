@@ -9,11 +9,19 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\lib\Boomsa.WPF.BaseLib\Boomsa.WPF.BaseLib\Boomsa.WPF.BaseLib.csproj" />
+    <ProjectReference Include="..\Fitness.DAL\Fitness.DAL.csproj" />
+    <ProjectReference Include="..\Fitness.Interfaces\Fitness.Interfaces.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +39,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>
