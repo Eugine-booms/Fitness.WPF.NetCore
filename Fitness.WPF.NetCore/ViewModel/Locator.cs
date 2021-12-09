@@ -10,6 +10,6 @@ namespace Fitness.WPF.NetCore.ViewModel
 {
     public class Locator
     {
-        public MainViewModel GetMainVM() => App.Services.GetRequiredService<MainViewModel>();
+        public  MainViewModel GetMainVM => App.Services.GetRequiredService<MainViewModel>();
     }
 }
