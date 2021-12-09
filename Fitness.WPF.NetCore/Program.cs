@@ -2,15 +2,11 @@
 using Microsoft.Extensions.Hosting;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fitness.WPF.NetCore
 {
-    class Program
+    internal class Program
     {
 
         [STAThread]
@@ -26,13 +22,13 @@ namespace Fitness.WPF.NetCore
         internal static IHostBuilder CreateHostBuilder(string[] args) => Host
             .CreateDefaultBuilder(args)
             .ConfigureServices(App.ConfigureServices)
-            .ConfigureHostConfiguration(config=>
+            .ConfigureHostConfiguration(config =>
             {
                 config.SetBasePath(Directory.GetCurrentDirectory())
                 .AddEnvironmentVariables("PREFIX_")
                 .AddCommandLine(args)
                 .AddJsonFile("appsettings.json", true);
             });
-        
+
     }
 }

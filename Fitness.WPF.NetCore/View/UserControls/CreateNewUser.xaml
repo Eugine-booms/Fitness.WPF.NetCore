@@ -40,7 +40,7 @@
                 <PasswordBox x:Name="PasswordBox1_Password" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                 <PasswordBox x:Name="PasswordBox2_Password" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                 <TextBox x:Name="TextBox_email" materialDesign:HintAssist.Hint="Введите e-mail" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button Content="Создать пользователя" Click="Button_CreateUser_Click"/>
+                <Button Content="Создать пользователя" />
             </StackPanel>
         </Border>
     </Grid>
