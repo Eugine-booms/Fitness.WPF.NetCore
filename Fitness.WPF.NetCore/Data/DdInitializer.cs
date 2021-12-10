@@ -37,6 +37,7 @@ namespace Fitness.WPF.NetCore.Data
             var timer = new Stopwatch();
             timer.Start();
             __loger.LogInformation("Инициализация БД...");
+            
             //ToDo
             __loger.LogInformation("Удаление предыдушей БД...");
             await __db.Database.EnsureDeletedAsync().ConfigureAwait(false); //для отладки потом убрать 
@@ -55,7 +56,7 @@ namespace Fitness.WPF.NetCore.Data
             await InitialActivity();
 
             __loger.LogInformation("Инициализация выполнена за {0} мc.", timer.ElapsedMilliseconds - tempTime);
-            timer.Stop();
+            timer.Stop();  
         }
 
 
