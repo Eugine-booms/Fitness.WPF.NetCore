@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Fitness.WPF.NetCore.ViewModel.UCViewModel;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
@@ -6,7 +8,10 @@ namespace Fitness.WPF.NetCore.ViewModel
 
     {
         internal static IServiceCollection RegisterViewModels(this IServiceCollection services) => services
-            .AddSingleton<MainViewModel>();
+            .AddSingleton<MainViewModel>()
+            .AddSingleton<CreateNewUserViewModel>()
+            .AddSingleton<CreateNewUCViewModel>()
+            .AddSingleton< CurentUserChangeViewModel>();
 
 
     }
