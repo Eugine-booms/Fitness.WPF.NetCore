@@ -1,20 +1,17 @@
 ﻿using Fitness.DAL.Entities;
+using Fitness.Interfaces;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Fitness.DAL
 {
-   static class RepositoryRegistrator
+  public  static class RepositoryRegistrator
     {
-        public static IServiceCollection RegistrRepository(this IServiceCollection services) => services
-           .AddTransient<DbRepository<User>, UserRepository>()
-           .AddTransient<DbRepository<Exercise>, ExerciseRepository>()
-           .AddTransient<DbRepository<Activites>, ActivitesRepository>()
-           .AddTransient<DbRepository<Dish>, DishRepository>()
-           .AddTransient<DbRepository<Eating>, EatingRepository>();
+        public static IServiceCollection RegisterRepository(this IServiceCollection services) => services
+           .AddTransient<IRepository<User>, UserRepository>()
+           .AddTransient<IRepository<Exercise>, ExerciseRepository>()
+           .AddTransient<IRepository<Activites>, ActivitesRepository>()
+           .AddTransient<IRepository<Dish>, DishRepository>()
+           .AddTransient<IRepository<Eating>, EatingRepository>();
     }
 }

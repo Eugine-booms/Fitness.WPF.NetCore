@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Fitness.DAL
 {
-    internal class DbRepository<T> : IRepository<T> where T : class, IEntity, new()
+    public class DbRepository<T> : IRepository<T> where T : class, IEntity, new()
     {
         private readonly FitnessDb _db;
         private readonly DbSet<T> _set;
