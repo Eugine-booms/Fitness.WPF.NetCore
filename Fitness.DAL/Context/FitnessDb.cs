@@ -10,10 +10,12 @@ namespace Fitness.DAL.Context
 {
    public class FitnessDb : DbContext
     {
-        public DbSet<Dish> Dishes {get; set;}
         public DbSet<User> Users { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
+
         public DbSet<Eating> Eatings { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Activity> Activities { get; set; }
 
         public FitnessDb(DbContextOptions<FitnessDb> options) : base(options) { }
     
