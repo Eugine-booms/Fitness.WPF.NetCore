@@ -10,7 +10,7 @@
         <viewUC:CreateNewUser DataContext="{Binding}"/>
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type VMUC:CurentUserChangeViewModel}">
+    <DataTemplate DataType="{x:Type vm:CurentUserChangeViewModel}">
         <viewUC:CurrentUserChange DataContext="{Binding}"/>
     </DataTemplate>
 
