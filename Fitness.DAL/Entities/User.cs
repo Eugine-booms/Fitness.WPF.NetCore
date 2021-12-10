@@ -1,6 +1,7 @@
 ﻿using Fitness.DAL.Entities.Base;
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Fitness.DAL.Entities
@@ -14,7 +15,7 @@ namespace Fitness.DAL.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual Exercise Exercise { get; set; }
+        public virtual ICollection<Exercise> Exercises { get; set; }
+       
     }
-   
 }
