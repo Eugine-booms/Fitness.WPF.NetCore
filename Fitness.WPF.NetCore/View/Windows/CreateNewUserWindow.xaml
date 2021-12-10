@@ -8,39 +8,13 @@
         xmlns:vm="clr-namespace:Fitness.WPF.NetCore.ViewModel"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance {x:Type vm:MainViewModel}, IsDesignTimeCreatable=True}"
-        Title="CreateNewUserWindow" Height="450" Width="800">
-    
-    <Grid Background="#ffdadada" Margin="0,0,-36,-37" >
-        <Border MaxWidth="600" MinHeight="15"  Margin="15" Background="White" VerticalAlignment="Center" Padding="40" CornerRadius="30">
-            <Border.Effect >
-                <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="15"/>
-            </Border.Effect>
-            <StackPanel >
-                <WrapPanel HorizontalAlignment="Center">
-                    <md:PackIcon Kind="Account" Height="30" Width="30" />
-                    <TextBlock Text="Выберите пользователя" FontSize="30" FontWeight="Bold" Margin="0 0 0 20 " HorizontalAlignment="Center"/>
-                </WrapPanel>
-                <WrapPanel >
-                    <TextBlock Text="Текущий пользователь:" FontSize="20" FontWeight="Bold" Margin="0 20 0 20 " HorizontalAlignment="Center" Style="{StaticResource MaterialDesignTextBlock}"/>
-                    <TextBlock Text="{Binding CurentUser.Name}" FontSize="20" FontWeight="Bold" Margin="20 20 0 20 " HorizontalAlignment="Center" FontStyle="Italic" Style="{StaticResource MaterialDesignTextBlock}"/>
-                </WrapPanel>
+        Title="User" Height="450" Width="800">
 
-                <StackPanel Height="50">
-                    <ListBox x:Name="ListBox_UsersList" ItemsSource="{Binding Path=Users}" SelectedItem="{Binding Path=CurentUser, Mode=TwoWay}" Margin="10" Style="{StaticResource MaterialDesignChoiceChipListBox}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=Name}"></TextBlock>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-                <TextBox x:Name="TextBlock_Login" Text="{Binding Path=TextBoxLogin, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="TextBox_Password"  md:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Grid Margin="0 20 0 20">
-                    <Button Command="{Binding Path=EnterUserCommand}" CommandParameter="{Binding Path=CurentUser}" HorizontalAlignment="Left" Content="Войти"/>
-                    <Button Command="{Binding Path=NewUserCommand}" HorizontalAlignment="Right"  Content="Новый" Style="{StaticResource MaterialDesignFlatButton}"/>
-                </Grid>
-            </StackPanel>
-        </Border>
-    </Grid>
+<Grid>
+    <ContentControl Content="{Binding Path=CurentModel}">
+
+    </ContentControl>
+</Grid>
 </Window>
+    
+    
