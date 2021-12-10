@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
 {
-    internal class CreateNewUserViewModel : ViewModelBase
+    public class CreateNewUCViewModel : ViewModelBase
     {
        
 

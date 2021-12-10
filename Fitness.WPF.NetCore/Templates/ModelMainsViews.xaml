@@ -6,7 +6,7 @@
 
 
 
-    <DataTemplate DataType="{x:Type vm:CreateNewUserViewModel}">
+    <DataTemplate DataType="{x:Type vm:CreateNewUCViewModel}">
         <viewUC:CreateNewUser DataContext="{Binding}"/>
     </DataTemplate>
 

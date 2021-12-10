@@ -13,13 +13,14 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
 
-                <!--pack://application:,,,/Fitness.WPF.NetCore;component/app.xaml}	System.Uri-->
+                <ResourceDictionary Source="Templates/ModelMainsViews.xaml"/>
                 <ResourceDictionary Source="Stiles/MainStyle.xaml"/>
                 <ResourceDictionary Source="Infrastructure/Commands/AppCommands.xaml"/>
                 <!--<ResourceDictionary Source="style:GeneralDictionary.xaml}" />-->
             </ResourceDictionary.MergedDictionaries>
             
-            <mv:Locator x:Key="MainVM"/>
+            <mv:Locator x:Key="VMLocator"/>
+            
             
         </ResourceDictionary>
     </Application.Resources>

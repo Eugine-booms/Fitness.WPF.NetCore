@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fitness.WPF.NetCore" xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        DataContext="{Binding Path=GetMainVM, Source={StaticResource MainVM}}"
+        DataContext="{Binding Path=GetMainVM, Source={StaticResource VMLocator}}"
         Title="MainWindow" Height="450" Width="800">
 
     <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
