@@ -18,7 +18,7 @@
                         <TextBlock>Menu</TextBlock>
                     </StackPanel>
                 </MenuItem.Header>
-                <MenuItem Header="User" >
+                <MenuItem Header="User" Command="{Binding ChangeUserCommand}" >
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="Exit" ></MenuItem>
