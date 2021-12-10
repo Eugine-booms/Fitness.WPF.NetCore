@@ -17,7 +17,8 @@ namespace Fitness.WPF.NetCore.Data
     {
 
         public static IServiceCollection RegisterDataBase(this IServiceCollection services, IConfiguration configuration) => services
-               .AddDbContext<FitnessDb>(opt =>
+               .AddDbContext<FitnessDb>(
+                     opt =>
                {
                    var type = configuration["Type"];
                    switch (type)
@@ -37,7 +38,8 @@ namespace Fitness.WPF.NetCore.Data
                        default:
                            throw new InvalidOperationException($"Тип подключения {type} не поддерживается");
                    }
-               });
+               })
+            .AddTransient<DBInitializer>();
         
     }
 }

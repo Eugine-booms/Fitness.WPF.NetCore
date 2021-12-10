@@ -38,10 +38,10 @@ namespace Fitness.WPF.NetCore
         {
             IsDesignTime = false;
             var host = Host;
-            //using (var scope = Services.CreateScope())
-            //{
-            //    scope.ServiceProvider.GetRequiredService<DBInitializer>();  //
-            //}
+            using (var scope = Services.CreateScope())
+            {
+              await  scope.ServiceProvider.GetRequiredService<DBInitializer>().InitializeAsync();  //
+            }
             await host.StartAsync().ConfigureAwait(false);
             base.OnStartup(e);
         }

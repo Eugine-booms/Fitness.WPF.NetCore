@@ -26,6 +26,12 @@ namespace Fitness.WPF.NetCore.Data
             this.__loger = loger ?? throw new ArgumentNullException(nameof(loger));
         }
 
+        public void Initialize()
+        {
+            __db.Database.EnsureDeleted();
+            __db.Database.Migrate();
+        }
+
         public async Task InitializeAsync()
         {
             var timer = new Stopwatch();
@@ -41,116 +47,121 @@ namespace Fitness.WPF.NetCore.Data
             __loger.LogInformation("Миграция выполнена за {0} мc.", timer.ElapsedMilliseconds - tempTime);
             tempTime = timer.ElapsedMilliseconds;
 
-            if (await __db.Books.AnyAsync()) return;
-            await InitializeCategory();
-            await InitialBooks();
-            await InitialBuyers();
-            await InitialSellers();
-            await InitialDeals();
+            if (await __db.Users.AnyAsync()) return;
+            await InitializeUser();
+            //await InitialBooks();
+            //await InitialBuyers();
+            //await InitialSellers();
+            //await InitialDeals();
             __loger.LogInformation("Инициализация выполнена за {0} мc.", timer.ElapsedMilliseconds - tempTime);
             timer.Stop();
         }
 
 
-        private const int __catrgoriesCount = 10;
-        private Category[] _categories;
+        private const int __UserCount = 10;
+        private User[] _Users;
 
-        private async Task InitializeCategory()
+        private async Task InitializeUser()
         {
             var timer = Stopwatch.StartNew();
             __loger.LogInformation("Инициализация категорий...");
 
-            _categories = new Category[__catrgoriesCount];
-            for (int i = 0; i < __catrgoriesCount; i++)
+            _Users = new User[__UserCount];
+            for (int i = 0; i < __UserCount; i++)
             {
-                _categories[i] = new Category()
+                _Users[i] = new User()
                 {
-                    Name = $"Категория {i + 1}"
+                    Name = $"User {i + 1}",
+                    Birthday = DateTime.Now,
+                    Email=$"Emale User_{i}@mail.ru",
+                    Hight=180.0,
+                    Weight=120.0,
+                    Password="password"
                 };
             }
-            await __db.AddRangeAsync(_categories);
+            await __db.AddRangeAsync(_Users);
             await __db.SaveChangesAsync();
             __loger.LogInformation("Инициализация категорий выполнена за {0} мc.", timer.ElapsedMilliseconds);
         }
-        private const int __booksCount = 10;
-        private Book[] _books;
-        private async Task InitialBooks()
-        {
-            var timer = Stopwatch.StartNew();
-            __loger.LogInformation("Инициализация книг...");
+        //private const int __booksCount = 10;
+        //private Book[] _books;
+        //private async Task InitialBooks()
+        //{
+        //    var timer = Stopwatch.StartNew();
+        //    __loger.LogInformation("Инициализация книг...");
 
-            var rnd = new Random();
-            _books = new Book[__booksCount];
-            _books = Enumerable.Range(1, __booksCount)
-                .Select(b => new Book { Name = $" Книга {b + 1}", Category = rnd.NextItem(_categories) })
-                .ToArray();
-            await __db.AddRangeAsync(_books);
-            await __db.SaveChangesAsync();
+        //    var rnd = new Random();
+        //    _books = new Book[__booksCount];
+        //    _books = Enumerable.Range(1, __booksCount)
+        //        .Select(b => new Book { Name = $" Книга {b + 1}", Category = rnd.NextItem(_categories) })
+        //        .ToArray();
+        //    await __db.AddRangeAsync(_books);
+        //    await __db.SaveChangesAsync();
 
-            __loger.LogInformation("Инициализация книг выполнена за {0} мc.", timer.ElapsedMilliseconds);
-        }
+        //    __loger.LogInformation("Инициализация книг выполнена за {0} мc.", timer.ElapsedMilliseconds);
+        //}
 
-        private const int __sellerscount = 10;
-        private Seller[] _sellers;
-        private async Task InitialSellers()
-        {
-            var timer = Stopwatch.StartNew();
-            __loger.LogInformation("Инициализация Продавцов...");
+        //private const int __sellerscount = 10;
+        //private Seller[] _sellers;
+        //private async Task InitialSellers()
+        //{
+        //    var timer = Stopwatch.StartNew();
+        //    __loger.LogInformation("Инициализация Продавцов...");
 
-            _sellers = new Seller[__sellerscount];
-            _sellers = Enumerable.Range(1, __sellerscount)
-                .Select(s => new Seller()
-                {
-                    Name = $" Продавец- Имя {s + 1}",
-                    Surname = $"Продавец-фамилия {s + 1}",
-                    Patronymic = $" Продавец-отчество {s + 1}"
-                })
-                .ToArray();
-            await __db.AddRangeAsync(_sellers);
-            await __db.SaveChangesAsync();
+        //    _sellers = new Seller[__sellerscount];
+        //    _sellers = Enumerable.Range(1, __sellerscount)
+        //        .Select(s => new Seller()
+        //        {
+        //            Name = $" Продавец- Имя {s + 1}",
+        //            Surname = $"Продавец-фамилия {s + 1}",
+        //            Patronymic = $" Продавец-отчество {s + 1}"
+        //        })
+        //        .ToArray();
+        //    await __db.AddRangeAsync(_sellers);
+        //    await __db.SaveChangesAsync();
 
-            __loger.LogInformation("Инициализация продавцов выполнена за {0} мc.", timer.ElapsedMilliseconds);
-        }
+        //    __loger.LogInformation("Инициализация продавцов выполнена за {0} мc.", timer.ElapsedMilliseconds);
+        //}
 
-        private const int __buyersCount = 10;
-        private Buyer[] _buyers;
-        private async Task InitialBuyers()
-        {
-            var timer = Stopwatch.StartNew();
-            __loger.LogInformation("Инициализация покупателей...");
-            _buyers = new Buyer[__buyersCount];
-            _buyers = Enumerable.Range(1, __buyersCount)
-                .Select(s => new Buyer()
-                {
-                    Name = $" Покупатель- Имя {s + 1}",
-                    Surname = $"Покупатель-фамилия {s + 1}",
-                    Patronymic = $" Покупатель-отчество {s + 1}"
-                })
-                .ToArray();
-            await __db.AddRangeAsync(_buyers);
-            await __db.SaveChangesAsync();
-            __loger.LogInformation("Инициализация покупателей выполнена за {0} мc.", timer.ElapsedMilliseconds);
-        }
+        //private const int __buyersCount = 10;
+        //private Buyer[] _buyers;
+        //private async Task InitialBuyers()
+        //{
+        //    var timer = Stopwatch.StartNew();
+        //    __loger.LogInformation("Инициализация покупателей...");
+        //    _buyers = new Buyer[__buyersCount];
+        //    _buyers = Enumerable.Range(1, __buyersCount)
+        //        .Select(s => new Buyer()
+        //        {
+        //            Name = $" Покупатель- Имя {s + 1}",
+        //            Surname = $"Покупатель-фамилия {s + 1}",
+        //            Patronymic = $" Покупатель-отчество {s + 1}"
+        //        })
+        //        .ToArray();
+        //    await __db.AddRangeAsync(_buyers);
+        //    await __db.SaveChangesAsync();
+        //    __loger.LogInformation("Инициализация покупателей выполнена за {0} мc.", timer.ElapsedMilliseconds);
+        //}
 
-        private const int __dealsCount = 1000;
+        //private const int __dealsCount = 1000;
 
-        private async Task InitialDeals()
-        {
-            var timer = Stopwatch.StartNew();
-            __loger.LogInformation("Инициализация сделок...");
-            var rnd = new Random();
-            var _deals = Enumerable.Range(1, __dealsCount)
-                .Select(s => new Deal()
-                {
-                    Book = rnd.NextItem(_books),
-                    Buyer = rnd.NextItem(_buyers),
-                    Seller = rnd.NextItem(_sellers),
-                    Price = (decimal)(rnd.NextDouble() * 4000 + 700)
-                });
-            await __db.AddRangeAsync(_deals);
-            await __db.SaveChangesAsync();
-            __loger.LogInformation("Инициализация Сделок выполнена за {0} мc.", timer.Elapsed.TotalSeconds);
-            timer.Stop();
-        }
+        //private async Task InitialDeals()
+        //{
+        //    var timer = Stopwatch.StartNew();
+        //    __loger.LogInformation("Инициализация сделок...");
+        //    var rnd = new Random();
+        //    var _deals = Enumerable.Range(1, __dealsCount)
+        //        .Select(s => new Deal()
+        //        {
+        //            Book = rnd.NextItem(_books),
+        //            Buyer = rnd.NextItem(_buyers),
+        //            Seller = rnd.NextItem(_sellers),
+        //            Price = (decimal)(rnd.NextDouble() * 4000 + 700)
+        //        });
+        //    await __db.AddRangeAsync(_deals);
+        //    await __db.SaveChangesAsync();
+        //    __loger.LogInformation("Инициализация Сделок выполнена за {0} мc.", timer.Elapsed.TotalSeconds);
+        //    timer.Stop();
+        //}
     }
 }

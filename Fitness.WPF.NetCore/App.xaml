@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Fitness.WPF.NetCore" 
              xmlns:mv="clr-namespace:Fitness.WPF.NetCore.ViewModel"
-             StartupUri="View/Windows/MainWindow.xaml">
+             StartupUri="View/Windows/MainWindow.xaml"
+             xmlns:style="using:MathCore.WPF.Styles">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,14 +13,14 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
 
-
+                <!--pack://application:,,,/Fitness.WPF.NetCore;component/app.xaml}	System.Uri-->
                 <ResourceDictionary Source="Stiles/MainStyle.xaml"/>
                 <ResourceDictionary Source="Infrastructure/Commands/AppCommands.xaml"/>
-
+                <!--<ResourceDictionary Source="style:GeneralDictionary.xaml}" />-->
             </ResourceDictionary.MergedDictionaries>
             
             <mv:Locator x:Key="MainVM"/>
-           
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
