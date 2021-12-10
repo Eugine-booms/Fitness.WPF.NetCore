@@ -15,7 +15,8 @@ namespace Fitness.DAL.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public virtual Gender Gender { get; set; }
-        public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual ICollection<Activites> Activites { get; set; }  = new HashSet<Activites>();
+              
        
     }
 }

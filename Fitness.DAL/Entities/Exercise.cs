@@ -7,10 +7,11 @@ namespace Fitness.DAL.Entities
 {
     public class Exercise : NamedEntity
     {
-        public DateTime Start { get; set; }
-        public DateTime Finish { get; set; }
-        public virtual ICollection<Activity> Activities { get; set; }
+       
 
+        public double CaloriesPerMinute { get; set; }
+        public virtual ICollection<Activites> Activities { get; set; } = new HashSet<Activites>();
+     
     }
 
 }

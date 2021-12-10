@@ -9,7 +9,8 @@ namespace Fitness.DAL.Entities
     {
         public DateTime Moment { get; set; }
         public User User { get; set; }
-        public virtual ICollection<Dish> Dishes { get; set; }
+        public virtual ICollection<Dish> Dishes { get; set; } = new HashSet<Dish>();
+       
     }
 
 }
