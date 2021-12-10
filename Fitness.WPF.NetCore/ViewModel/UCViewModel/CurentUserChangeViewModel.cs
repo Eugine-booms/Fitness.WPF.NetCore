@@ -1,58 +1,51 @@
-﻿using Boomsa.WPF.BaseLib.ViewModel.Base;
+﻿using Boomsa.WPF.BaseLib.Infrastructure.Command;
+using Boomsa.WPF.BaseLib.ViewModel.Base;
+
+using Fitness.DAL;
+using Fitness.DAL.Entities;
+using Fitness.Interfaces;
+
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
 {
-    internal class CurentUserChangeViewModel : ViewModelBase
-    {
+    public class CurentUserChangeViewModel : ViewModelBase
+{
+        private readonly IRepository<User> _dbUsers;
+        private readonly ViewModelBase _parentVM;
 
-        //private ICollectionView _users;
-        //public ICollectionView Users
-        //{
-        //    get => _users;
-        //    set => Set(ref _users, value);
-        //}
-
-
-        //private string _textBoxLogin;
-        //public string TextBoxLogin
-        //{
-        //    get => _textBoxLogin;
-        //    set => Set(ref _textBoxLogin, value);
-        //}
-        //private User _curentUser;
-        //public User CurentUser
-        //{
-        //    get => _curentUser;
-        //    set => Set(ref _curentUser, value);
+        #region Property Переменные
+        private ICollectionView _users;
+        public ICollectionView Users
+        {
+            get => _users;
+            set => Set(ref _users, value);
+        }
 
 
-        //}
-        //public CurentUserChangeViewModel()
-        //{
-        //    Users = CollectionViewSource.GetDefaultView(UserManager.LoadUsers());
-        //    EnterUserCommand = new DelegateCommand(EnterUser, CanEnterUser);
-        //    NewUserCommand = new DelegateCommand(NewUser);
-        //}
+        private string _textBoxLogin;
+        public string TextBoxLogin
+        {
+            get => _textBoxLogin;
+            set => Set(ref _textBoxLogin, value);
+        }
 
-        //private bool CanEnterUser(object arg)
-        //{
-        //    return (arg as User) != null;
-        //}
-        //private void EnterUser(object obg)
-        //{
-        //    var newUserwindow = new MainWindow();
-        //    var newUserwindowViewModel = new MainWindowViewModel();
-        //    newUserwindow.ShowDialog();
+        private User _curentUser;
+        
+        public User CurentUser
+        {
+            get => _curentUser;
+            set => Set(ref _curentUser, value);
+        }
 
-        //}
-        //private void NewUser(object obj)
-        //{
-        //    var newUserwindow = new CreateNewUser();
-        //    var newUserwindowViewModel = new CreateNewUserViewModel();
-        //    newUserwindow.ShowDialog();
-        //}
-
-        //public ICommand EnterUserCommand { get; private set; }
-        //public ICommand NewUserCommand { get; private set; }
+        #endregion
+        public CurentUserChangeViewModel(IRepository<User> users, CreateNewUserViewModel parentVM)
+        {
+            _parentVM = parentVM;
+            _dbUsers = users;
+            Users = CollectionViewSource.GetDefaultView(_dbUsers.Items);
+        }
     }
 }
