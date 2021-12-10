@@ -10,9 +10,9 @@ namespace Fitness.Interfaces
         T Get(int id);
         Task<T> GetAsync(int id, CancellationToken Cancel = default);
         T Add(T items);
-        Task<T> AddAsync(T items, CancellationToken Cancel = default);
-        T Update(T items);
-        Task<T> UpdateAsync(T items, CancellationToken Cancel = default);
+        Task<T> AddAsync(T item, CancellationToken Cancel = default);
+        T Update(T item);
+        Task<T> UpdateAsync(T item, CancellationToken Cancel = default);
         T Remove(int id);
         Task<T> RemoveAsync(int id, CancellationToken Cancel = default);
     }
