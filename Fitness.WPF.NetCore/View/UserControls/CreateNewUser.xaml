@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Fitness.WPF.NetCore.View.UserControls"
-             mc:Ignorable="d" Height="549" Width="794">
+        xmlns:viewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel"
+             d:DataContext="{d:DesignInstance {x:Type viewmodel:CreateNewUserViewModel}, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d" Height="589" Width="834">
+
     <Grid Background="#ffdadada" Margin="0,0,-36,-37" >
         <Border MaxWidth="600" MinHeight="15"  Margin="15" Background="White" VerticalAlignment="Center" Padding="40" CornerRadius="30">
             <Border.Effect >

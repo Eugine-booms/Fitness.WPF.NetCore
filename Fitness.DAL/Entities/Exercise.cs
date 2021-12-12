@@ -10,7 +10,7 @@ namespace Fitness.DAL.Entities
        
 
         public double CaloriesPerMinute { get; set; }
-        public virtual ICollection<Activites> Activities { get; set; } = new HashSet<Activites>();
+        public virtual ICollection<Activities> Activities { get; set; } = new HashSet<Activities>();
      
     }
 

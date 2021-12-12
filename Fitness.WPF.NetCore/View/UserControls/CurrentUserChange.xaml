@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Fitness.WPF.NetCore.View.UserControls"
+        xmlns:ucviewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel.UCViewModel"
+             d:DataContext="{d:DesignInstance {x:Type ucviewmodel:CurentUserChangeViewModel}, IsDesignTimeCreatable=True}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#ffdadada" Margin="0,0,-36,-37" >

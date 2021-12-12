@@ -15,11 +15,16 @@ namespace Fitness.WPF.NetCore.ViewModel
         private readonly CreateNewUCViewModel newUserVM;
         private readonly CurentUserChangeViewModel changeUserVM;
 
-        public CreateNewUserViewModel(CreateNewUCViewModel newUserVM, CurentUserChangeViewModel changeUserVM)
+
+        public CreateNewUserViewModel(CreateNewUCViewModel newUserVM)
         {
             this.newUserVM = newUserVM;
-            this.changeUserVM = changeUserVM;
+           // this.changeUserVM = changeUserVM;
             CurentModel = changeUserVM;
+        }
+
+        public CreateNewUserViewModel()
+        {
         }
 
         #region  ViewModelBase CurentModel Текущая модель для представления

@@ -10,11 +10,11 @@ using System.Text;
 
 namespace Fitness.DAL
 {
-    class ActivitesRepository : DbRepository<Activites>
+    class ActivitiesRepository : DbRepository<Activities>
     {
-        public ActivitesRepository(FitnessDb db) : base(db)
+        public ActivitiesRepository(FitnessDb db) : base(db)
         {
         }
-        public override IQueryable<Activites> Items => base.Items.Include(item => item.Exercises);
+        public override IQueryable<Activities> Items => base.Items.Include(item => item.Exercises);
     }
 }

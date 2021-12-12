@@ -41,11 +41,11 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
         }
 
         #endregion
-        public CurentUserChangeViewModel(IRepository<User> users, CreateNewUserViewModel parentVM)
+        public CurentUserChangeViewModel()
         {
-            _parentVM = parentVM;
-            _dbUsers = users;
-            Users = CollectionViewSource.GetDefaultView(_dbUsers.Items);
+            //_parentVM = parentVM;
+            //_dbUsers = users;
+            //Users = CollectionViewSource.GetDefaultView(_dbUsers.Items);
         }
     }
 }

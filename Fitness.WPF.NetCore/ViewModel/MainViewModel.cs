@@ -6,6 +6,7 @@ using Fitness.DAL;
 using Fitness.Interfaces;
 using System.Windows.Controls;
 using Fitness.WPF.NetCore.View.Windows;
+using System;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
@@ -16,7 +17,12 @@ namespace Fitness.WPF.NetCore.ViewModel
         {
             dbUsers = _dbUsers;
         }
-
+        public MainViewModel()
+        {
+            if (!App.IsDesignTime)
+                throw new InvalidOperationException("Использование конструктора для дизайн мода");
+            
+        }
 
         #region Commands
 

@@ -158,17 +158,17 @@ namespace Fitness.WPF.NetCore.Data
             __loger.LogInformation("Инициализация упражнений выполнена за {0} мc.", timer.ElapsedMilliseconds);
         }
         private const int __activityCount = 10;
-        private Activites[] _activity;
+        private Activities[] _activity;
         private async Task InitialActivity()
         {
             var timer = Stopwatch.StartNew();
             __loger.LogInformation("Инициализация Активностей  ...");
 
             var rnd = new Random();
-            _activity = new Activites[__activityCount];
+            _activity = new Activities[__activityCount];
             _activity = Enumerable.Range(1, __activityCount)
                 .Select(a =>
-                new Activites
+                new Activities
                 {
                     Name = $"Активность  {a}",
                     Exercises = Enumerable.Range(1, 5).Select(ex => rnd.NextItem(_exercise)).ToList() ,
