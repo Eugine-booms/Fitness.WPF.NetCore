@@ -5,9 +5,9 @@ namespace Fitness.WPF.NetCore.View.UserControls
     /// <summary>
     /// Логика взаимодействия для CreateNewUser.xaml
     /// </summary>
-    public partial class CreateNewUser : UserControl
+    public partial class CreateNewUserUC : UserControl
     {
-        public CreateNewUser()
+        public CreateNewUserUC()
         {
             InitializeComponent();
         }

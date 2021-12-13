@@ -2,26 +2,40 @@
 using Boomsa.WPF.BaseLib.Infrastructure.Command;
 using System.Windows.Input;
 using Fitness.DAL.Entities;
-using Fitness.DAL;
 using Fitness.Interfaces;
-using System.Windows.Controls;
-using Fitness.WPF.NetCore.View.Windows;
 using System;
+using Fitness.WPF.NetCore.Services.Interfaces;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    internal class MainViewModel : ViewModelBase
     {
-        private readonly IRepository<User> dbUsers;
-        public MainViewModel(IRepository<User> _dbUsers)
+        private readonly IRepository<User> _dbUsers;
+        private readonly IChangeUserDialog _changeUserDialog;
+
+
+        #region  User CurrentUser Текущий пользователь
+        ///<summary> Текущий пользователь
+        private User _CurrentUser;
+        ///<summary> Текущий пользователь
+        public User CurrentUser
         {
-            dbUsers = _dbUsers;
+            get => _CurrentUser;
+            set => Set(ref _CurrentUser, value, nameof(CurrentUser));
+        }
+        #endregion
+
+
+        public MainViewModel(IRepository<User> dbUsers, IChangeUserDialog changeUserDialog)
+        {
+            _dbUsers = dbUsers;
+            _changeUserDialog = changeUserDialog;
         }
         public MainViewModel()
         {
             if (!App.IsDesignTime)
                 throw new InvalidOperationException("Использование конструктора для дизайн мода");
-            
+
         }
 
         #region Commands
@@ -38,8 +52,7 @@ namespace Fitness.WPF.NetCore.ViewModel
         new LambdaCommand(OnChangeUserCommandExecuted, CanChangeUserCommandExecute);
         private void OnChangeUserCommandExecuted(object p)
         {
-            var window = new CreateNewUserWindow();
-            window.Show();
+            _changeUserDialog.ChangeUser(CurrentUser);     
         }
         private bool CanChangeUserCommandExecute(object p) => true;     
         

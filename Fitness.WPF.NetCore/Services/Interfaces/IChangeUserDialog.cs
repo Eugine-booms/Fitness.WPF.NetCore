@@ -2,8 +2,8 @@
 
 namespace Fitness.WPF.NetCore.Services.Interfaces
 {
-    interface IChangeUserDialog
+  interface IChangeUserDialog
     {
-        User ChangeUser();
+        User ChangeUser(User currentUser);
     }
 }

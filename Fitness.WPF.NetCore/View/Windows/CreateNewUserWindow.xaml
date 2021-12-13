@@ -7,9 +7,8 @@
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:Fitness.WPF.NetCore.ViewModel"
         mc:Ignorable="d"
-        DataContext="{Binding Path=GetCreateuserVM, Source={StaticResource VMLocator}}"
-        d:DataContext="{d:DesignInstance {x:Type vm:CreateNewUserViewModel}, IsDesignTimeCreatable=True}"
-        Title="User" Height="450" Width="800">
+        d:DataContext="{d:DesignInstance {x:Type vm:CreateNewUserViewModel}}"
+        Title="User" Height="400" Width="400">
 
 <Grid>
         <ContentControl Content="{Binding Path=CurentModel}">
@@ -17,5 +16,5 @@
     </ContentControl>
 </Grid>
 </Window>
-    
-    
+
+<!--DataContext="{Binding Path=GetCreateuserVM, Source={StaticResource VMLocator}}"-->  

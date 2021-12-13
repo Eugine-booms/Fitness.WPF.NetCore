@@ -3,11 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fitness.WPF.NetCore" xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:l="clr-namespace:Fitness.WPF.NetCore" 
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         DataContext="{Binding Path=GetMainVM, Source={StaticResource VMLocator}}"
         Title="MainWindow" Height="450" Width="800">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName ="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=ChangeUserCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
 
         <Menu DockPanel.Dock="Top" Height="50" VerticalAlignment="Top" Background="LightGray">
