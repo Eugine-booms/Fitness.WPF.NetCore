@@ -42,14 +42,19 @@
                 </Grid>
                 
                 <TextBox x:Name="TextBox_Login" Text="{Binding User.Name}" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <PasswordBox x:Name="PasswordBox1_Password" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <PasswordBox x:Name="PasswordBox2_Password" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <CheckBox x:Name="PasswordShowCheckBox" Content="Показать пароль"  
+                          Style="{StaticResource SwitcherCheckBoxStyle}" 
+                          Click="CheckBoxPasswordShow_click" />
+                <PasswordBox x:Name="PasswordBox1_Password" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                <PasswordBox x:Name="PasswordBox2_Password" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                             TextInput="Password1_TextInput"/>
                 <TextBox x:Name="TextBox_email" Text="{Binding User.Email}" materialDesign:HintAssist.Hint="Введите e-mail" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Button Content="Создать пользователя" Margin="0 20 0 0" />
-                
-                
-                
-                
+                <TextBox x:Name="TextBoxPassword" Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+
+
+
+
             </StackPanel>
         </Border>
     </Grid>

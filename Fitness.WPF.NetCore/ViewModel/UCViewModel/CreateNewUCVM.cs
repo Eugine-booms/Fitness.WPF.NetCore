@@ -28,6 +28,17 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
         }
         #endregion
 
+        #region  string Password ""
+        ///<summary> ""
+        private string _Password;
+        ///<summary> ""
+        public string Password
+        {
+            get => _Password;
+            set => Set(ref _Password, value, nameof(Password));
+        }
+        #endregion
+
 
         public CreateNewUCVM()
         {
