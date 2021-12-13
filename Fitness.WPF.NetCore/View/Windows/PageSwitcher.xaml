@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel"
         d:DataContext="{d:DesignInstance Type=viewmodel:PageSwitcherVM}"
         mc:Ignorable="d"
-        Title="PageSwitcher" Height="auto" Width="auto" MinHeight="300" MinWidth="300">
+        Title="PageSwitcher" Height="auto" Width="auto" MinHeight="300" MinWidth="300" Background="Transparent" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
     <UniformGrid Rows="1" >
         <ContentControl Content="{Binding Contentcontrol}"/>
     </UniformGrid>
