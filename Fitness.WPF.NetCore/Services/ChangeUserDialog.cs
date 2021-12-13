@@ -21,14 +21,9 @@ namespace Fitness.WPF.NetCore.Services
         public User ChangeUser(User currentUser=null)
         {
             User current=currentUser??new User();
-            var changeUserWindow = new CreateNewUserWindow();
-
-            
-            //var changeUserUCVM = App.Services.GetRequiredService<ChangeUserUCVM>();
-            //var createUserUCVM = App.Services.GetRequiredService<CreateNewUCVM>();
-            changeUserUCVM.CurentUser = current;
-            //var changeUserVM = new CreateNewUserViewModel(createUserUCVM, changeUserUCVM);
-            //changeUserWindow.DataContext = changeUserVM;
+            var changeUserVM = new PageSwitcherVM(current);
+            var changeUserWindow = new View.Windows.PageSwitcher();
+            changeUserWindow.DataContext = changeUserVM;
             changeUserWindow.Title = "Смена пользователя";
             changeUserWindow.Owner = App.CurrentWindow;
             changeUserWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;

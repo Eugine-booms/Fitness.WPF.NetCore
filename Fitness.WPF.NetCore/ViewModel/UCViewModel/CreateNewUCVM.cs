@@ -1,5 +1,7 @@
 ﻿using Boomsa.WPF.BaseLib.ViewModel.Base;
 
+using Fitness.WPF.NetCore.Services.Interfaces;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
 {
-    public class CreateNewUCVM : ViewModelBase
+    public class CreateNewUCVM : ViewModelBase  , ISwitchable
     {
         public CreateNewUCVM()
         {
@@ -17,6 +19,11 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
             //    throw new InvalidOperationException("Использование конструктора для дизайн мода");
         }
 
-        internal CreateNewUserViewModel ParentVM;
+        internal PageSwitcherVM ParentVM;
+
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,13 +6,15 @@
 
 
 
-    <DataTemplate DataType="{x:Type vm:CreateNewUCVM}">
-        <viewUC:CreateNewUserUC DataContext="{Binding}"/>
-    </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:CreateNewUCVM}">
+        <viewUC:CreateNewUserUC DataContext="{Binding }"/>
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type vm:ChangeUserUCVM}">
         <viewUC:ChangeUserUC DataContext="{Binding}"/>
     </DataTemplate>
 
+   
 
 </ResourceDictionary>

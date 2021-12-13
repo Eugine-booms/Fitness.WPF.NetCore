@@ -4,6 +4,9 @@ using Boomsa.WPF.BaseLib.ViewModel.Base;
 using Fitness.DAL;
 using Fitness.DAL.Entities;
 using Fitness.Interfaces;
+using Fitness.WPF.NetCore.Services;
+using Fitness.WPF.NetCore.Services.Interfaces;
+using Fitness.WPF.NetCore.View.UserControls;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,10 +17,22 @@ using System.Windows.Input;
 
 namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
 {
-    public class ChangeUserUCVM : ViewModelBase
+    public class ChangeUserUCVM : ViewModelBase  , ISwitchable
 {
         private readonly IRepository<User> _dbUsers;
-        internal CreateNewUserViewModel ParentVM;
+        internal PageSwitcherVM ParentVM;
+
+        #region  User CurrentUser Текущий пользователь
+        ///<summary> Текущий пользователь
+        private User _CurrentUser;
+        ///<summary> Текущий пользователь
+        public User CurrentUser
+        {
+            get => _CurrentUser;
+            set => Set(ref _CurrentUser, value, nameof(CurrentUser));
+        }
+        #endregion
+
 
 
 
@@ -55,13 +70,11 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
 
         #region Конструктор
 
-        public ChangeUserUCVM(IRepository<User> user)
+        public ChangeUserUCVM(User user)
         {
-
-            _dbUsers = user;
+            CurrentUser = user;
+            _dbUsers = App.Services.GetRequiredService<IRepository<User>>();
             Users = CollectionViewSource.GetDefaultView(_dbUsers.Items);
-            CurentUser=ParentVM.
-
         }
 
         #endregion
@@ -76,7 +89,9 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
         new LambdaCommand(OnNewUserCommandExecuted, CanNewUserCommandExecute);
         private void OnNewUserCommandExecuted(object p)
         {
-            ParentVM.ChangeCurrentVMToNewUser();
+            Switcher.Switch(new CreateNewUCVM());
+
+            
         }
         private bool CanNewUserCommandExecute(object p) => true;
 
@@ -96,8 +111,10 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
             
         }
         private bool CanChangeUserCommandExecute(object p) => CurentUser != null;
-
         #endregion
-
+        public void UtilizeState(object state)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

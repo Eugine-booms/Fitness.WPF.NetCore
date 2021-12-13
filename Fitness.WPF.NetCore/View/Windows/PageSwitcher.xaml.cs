@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Fitness.WPF.NetCore.Services.Interfaces;
+using Fitness.WPF.NetCore.Services;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +14,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Fitness.WPF.NetCore.View.UserControls;
 
 namespace Fitness.WPF.NetCore.View.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для ChangeUserWiew.xaml
+    /// Логика взаимодействия для PageSwitcher.xaml
     /// </summary>
-    public partial class ChangeUserWiew : Window
+    public partial class PageSwitcher : Window
     {
-        public ChangeUserWiew()
+        public PageSwitcher()
         {
             InitializeComponent();
+            
         }
+
+       
     }
 }

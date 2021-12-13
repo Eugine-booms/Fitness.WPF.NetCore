@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Fitness.WPF.NetCore.View.UserControls"
-              xmlns:viewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel"
+             xmlns:viewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel"
              xmlns:ucviewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel.UCViewModel"
              d:DataContext="{d:DesignInstance {x:Type ucviewmodel:CreateNewUCVM}}"
              mc:Ignorable="d" Height="589" Width="834">

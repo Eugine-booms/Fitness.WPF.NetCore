@@ -9,9 +9,9 @@ namespace Fitness.WPF.NetCore.ViewModel
     {
         internal static IServiceCollection RegisterViewModels(this IServiceCollection services) => services
             .AddTransient<MainViewModel>()
-            .AddSingleton<CreateNewUserViewModel>()
-            .AddSingleton<CreateNewUCVM>()
-            .AddSingleton< ChangeUserUCVM>();
+            .AddTransient<PageSwitcherVM>()
+            .AddTransient<CreateNewUCVM>()
+            .AddTransient< ChangeUserUCVM>();
 
 
     }
