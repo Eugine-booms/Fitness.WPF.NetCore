@@ -8,9 +8,9 @@
              xmlns:viewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel"
              xmlns:ucviewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel.UCViewModel"
              d:DataContext="{d:DesignInstance {x:Type ucviewmodel:CreateNewUCVM}}"
-             mc:Ignorable="d" Height="589" Width="834">
+             mc:Ignorable="d" Height="500" Width="600">
 
-    <Grid Background="#ffdadada" Margin="0,0,-36,-37" >
+    <Grid Background="#ffdadada" >
         <Border MaxWidth="600" MinHeight="15"  Margin="15" Background="White" VerticalAlignment="Center" Padding="40" CornerRadius="30">
             <Border.Effect >
                 <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="15"/>

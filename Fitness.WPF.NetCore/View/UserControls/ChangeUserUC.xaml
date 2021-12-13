@@ -7,8 +7,8 @@
              xmlns:local="clr-namespace:Fitness.WPF.NetCore.View.UserControls"
              xmlns:UCVM="clr-namespace:Fitness.WPF.NetCore.ViewModel.UCViewModel"
              d:DataContext="{d:DesignInstance {x:Type UCVM:ChangeUserUCVM}}"
-             mc:Ignorable="d" Height="479" Width="829">
-    <Grid Background="#ffdadada" Margin="0,0,-36,-37" >
+             mc:Ignorable="d" Height="450" Width="600">
+    <Grid Background="#ffdadada" >
         <Border MaxWidth="600" MinHeight="15"  Margin="15" Background="White" VerticalAlignment="Center" Padding="40" CornerRadius="30">
             <Border.Effect >
                 <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="15"/>

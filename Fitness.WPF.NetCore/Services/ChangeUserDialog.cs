@@ -22,12 +22,14 @@ namespace Fitness.WPF.NetCore.Services
         {
             User current=currentUser??new User();
             var changeUserVM = new PageSwitcherVM(current);
-            var changeUserWindow = new View.Windows.PageSwitcher();
-            changeUserWindow.DataContext = changeUserVM;
-            changeUserWindow.Title = "Смена пользователя";
-            changeUserWindow.Owner = App.CurrentWindow;
-            changeUserWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                
+            var changeUserWindow = new PageSwitcher
+            {
+                DataContext = changeUserVM,
+                Title = "Смена пользователя",
+                Owner = App.CurrentWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
+
             if (changeUserWindow.ShowDialog()!=true) 
             {
                 return currentUser;
