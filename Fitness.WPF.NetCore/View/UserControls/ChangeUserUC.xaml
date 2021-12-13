@@ -20,11 +20,14 @@
                 </WrapPanel>
                 <WrapPanel >
                     <TextBlock Text="Текущий пользователь:" FontSize="20" FontWeight="Bold" Margin="0 20 0 20 " HorizontalAlignment="Center" Style="{StaticResource MaterialDesignTextBlock}"/>
-                    <TextBlock Text="{Binding CurentUser.Name}" FontSize="20" FontWeight="Bold" Margin="20 20 0 20 " HorizontalAlignment="Center" FontStyle="Italic" Style="{StaticResource MaterialDesignTextBlock}"/>
+                    <TextBlock Text="{Binding OldUser.Name , Mode=OneTime }" FontSize="20" FontWeight="Bold" Margin="20 20 0 20 " HorizontalAlignment="Center" FontStyle="Italic" Style="{StaticResource MaterialDesignTextBlock}"/>
                 </WrapPanel>
 
                 <StackPanel Height="50">
-                    <ListBox x:Name="ListBox_UsersList" ItemsSource="{Binding Path=Users}" SelectedItem="{Binding Path=CurentUser, Mode=TwoWay}" Margin="10" Style="{StaticResource MaterialDesignChoiceChipListBox}">
+                    <ListBox x:Name="ListBox_UsersList" ItemsSource="{Binding Path=Users}" 
+                             SelectedItem="{Binding Path=CurrentUser, UpdateSourceTrigger=PropertyChanged}" 
+                             Margin="10" 
+                             Style="{StaticResource MaterialDesignChoiceChipListBox}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=Name}"></TextBlock>
@@ -33,10 +36,12 @@
                     </ListBox>
                 </StackPanel>
                 <TextBox x:Name="TextBlock_Login" Text="{Binding Path=TextBoxLogin, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}" md:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox x:Name="TextBox_Password"  md:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="TextBox_Password" Text="{Binding Path=TextBoxPassword, Mode=TwoWay,  UpdateSourceTrigger=PropertyChanged}"  md:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Grid Margin="0 20 0 20">
-                    <Button Command="{Binding Path=ChangeUserCommand}" CommandParameter="{Binding Path=CurentUser}" 
-                            HorizontalAlignment="Left" Content="Войти" IsDefault="True"/>
+                    <Button Content="Войти" 
+                            Command="{Binding Path=ChangeUserCommand}" 
+                            CommandParameter="True" 
+                            HorizontalAlignment="Left"  IsDefault="True"/>
                     <Button Command="{Binding Path=NewUserCommand}" HorizontalAlignment="Right"  
                             Content="Новый" Style="{StaticResource MaterialDesignFlatButton}" IsDefault="True"/>
                 </Grid>

@@ -52,7 +52,7 @@ namespace Fitness.WPF.NetCore.ViewModel
         new LambdaCommand(OnChangeUserCommandExecuted, CanChangeUserCommandExecute);
         private void OnChangeUserCommandExecuted(object p)
         {
-            _changeUserDialog.ChangeUser(CurrentUser);     
+            CurrentUser= _changeUserDialog.ChangeUser(CurrentUser);     
         }
         private bool CanChangeUserCommandExecute(object p) => true;     
         

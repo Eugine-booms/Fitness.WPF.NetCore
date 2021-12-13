@@ -1,4 +1,5 @@
 ﻿using Boomsa.WPF.BaseLib.Infrastructure.Command;
+using Boomsa.WPF.BaseLib.Services.Interfaces;
 using Boomsa.WPF.BaseLib.ViewModel.Base;
 
 using Fitness.DAL;
@@ -17,101 +18,132 @@ using System.Windows.Input;
 
 namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
 {
-    public class ChangeUserUCVM : ViewModelBase  , ISwitchable
-{
+    public class ChangeUserUCVM : ViewModelBase, ISwitchable
+    {
         private readonly IRepository<User> _dbUsers;
-        internal PageSwitcherVM ParentVM;
+        private readonly IUserDialog _userDialog;
+        private readonly CollectionViewSource UsersView = new CollectionViewSource();
+        public ICollectionView Users => UsersView?.View;
 
-        #region  User CurrentUser Текущий пользователь
-        ///<summary> Текущий пользователь
-        private User _CurrentUser;
-        ///<summary> Текущий пользователь
-        public User CurrentUser
+        #region User Старый пользователь, до смены если есть
+        private User _OldUser;
+        public User OldUser
         {
-            get => _CurrentUser;
-            set => Set(ref _CurrentUser, value, nameof(CurrentUser));
+            get => _OldUser;
+            set => Set(ref _OldUser, value);
+        } 
+        #endregion
+
+        #region  string  TextBoxPassword
+        ///<summary> Строка пароля
+
+        private string _TextBoxPassword;
+        ///<summary> ""
+        public string TextBoxPassword
+        {
+            get => _TextBoxPassword;
+            set => Set(ref _TextBoxPassword, value, nameof(TextBoxPassword));
         }
         #endregion
 
-
-
-
-
-        #region Property Переменные
-        private ICollectionView _users;
-        public ICollectionView Users
+        #region User Выбранный пользователь
+        private User _CurrentUser;
+        public User CurrentUser
         {
-            get => _users;
-            set => Set(ref _users, value);
+            get => _CurrentUser;
+            set
+            {
+                if (!Set(ref _CurrentUser, value)) return;
+
+                if (value != null)
+                {
+                    TextBoxLogin = value.Name;
+                }
+            }
         }
+        #endregion
 
-
+        #region String Login
         private string _textBoxLogin;
         public string TextBoxLogin
         {
             get => _textBoxLogin;
-            set => Set(ref _textBoxLogin, value);
+            set
+            {
+                if (!Set(ref _textBoxLogin, value)) return;
+                var su = CurrentUser;      //Без этого не работает, приходится кликать 2 раза.
+                Users.Refresh();
+                CurrentUser = su;
+            }
         }
-
-        private User _curentUser;
-        
-        public User CurentUser
-        {
-            get => _curentUser;
-            set => Set(ref _curentUser, value);
-        }
-        //public CurentUserChangeViewModel()
-        //{
-        //    if (!App.IsDesignTime)
-        //        throw new InvalidOperationException("Использование конструктора для дизайн мода");
-        //}
         #endregion
 
+
+        public ChangeUserUCVM()
+        {
+            if (!App.IsDesignTime)
+                throw new InvalidOperationException("Использование конструктора для дизайн мода");
+        }
 
         #region Конструктор
 
         public ChangeUserUCVM(User user)
         {
-            CurrentUser = user;
-            _dbUsers = App.Services.GetRequiredService<IRepository<User>>();
-            Users = CollectionViewSource.GetDefaultView(_dbUsers.Items);
-        }
+            OldUser = user;
 
+            _dbUsers = App.Services.GetRequiredService<IRepository<User>>();
+            _userDialog = App.Services.GetRequiredService<IUserDialog>();
+            UsersView.Source = _dbUsers.Items;
+            OnPropertyChanged(nameof(Users));
+            UsersView.Filter += UsersView_Filter;
+        } 
         #endregion
 
+        private void UsersView_Filter(object sender, FilterEventArgs e)
+        {
+            e.Accepted = (e.Item as User)?.Name?.ToLower().Contains(_textBoxLogin?.ToLower() ?? "") ?? true;
+        }
 
-
-        #region Команда NewUser
+        #region Команды
+        #region Создание нового пользователя
         private ICommand _NewUserCommand;
         /// <summary>"Описание"</summary>
         public ICommand NewUserCommand =>
-        _NewUserCommand ??=
-        new LambdaCommand(OnNewUserCommandExecuted, CanNewUserCommandExecute);
+        _NewUserCommand ??= new LambdaCommand(OnNewUserCommandExecuted, CanNewUserCommandExecute);
         private void OnNewUserCommandExecuted(object p)
         {
             Switcher.Switch(new CreateNewUCVM());
+        } 
 
-            
-        }
         private bool CanNewUserCommandExecute(object p) => true;
-
         #endregion
 
-        #region Команда ChangeUser
+        #region Вход попользователя
         private ICommand _ChangeUserCommand;
         /// <summary>"Описание"</summary>
         public ICommand ChangeUserCommand =>
         _ChangeUserCommand ??=
         new LambdaCommand(OnChangeUserCommandExecuted, CanChangeUserCommandExecute);
 
-     
-
         private void OnChangeUserCommandExecuted(object p)
         {
-            
+            if (CurrentUser.Password != TextBoxPassword)
+            {
+                _userDialog.Error_OK("Ошибка", "Не верный пароль");
+                return;
+            }
+            var window = App.CurrentWindow;
+            if (p != null)
+            {
+                Switcher.pageSwitcher.User = CurrentUser;
+                window.DialogResult = (bool?)Convert.ChangeType(p, typeof(bool));
+            }
+
         }
-        private bool CanChangeUserCommandExecute(object p) => CurentUser != null;
+        private bool CanChangeUserCommandExecute(object p) => CurrentUser != null; 
         #endregion
+        #endregion
+
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();

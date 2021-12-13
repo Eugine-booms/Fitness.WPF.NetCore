@@ -20,8 +20,8 @@ namespace Fitness.WPF.NetCore.Services
     {
         public User ChangeUser(User currentUser=null)
         {
-            User current=currentUser??new User();
-            var changeUserVM = new PageSwitcherVM(current);
+            //User current=currentUser??new User();
+            var changeUserVM = new PageSwitcherVM(currentUser);
             var changeUserWindow = new PageSwitcher
             {
                 DataContext = changeUserVM,
@@ -30,16 +30,12 @@ namespace Fitness.WPF.NetCore.Services
                 WindowStartupLocation = WindowStartupLocation.CenterOwner
             };
 
-            if (changeUserWindow.ShowDialog()!=true) 
+            if ((changeUserWindow.ShowDialog())??false) 
             {
-                return currentUser;
+                return changeUserVM.User;
             }
-                                   
 
-
-
-
-            return current;
+            return currentUser;
         }
     }
 }

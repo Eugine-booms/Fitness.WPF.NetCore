@@ -15,13 +15,15 @@ using System.Windows.Controls;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
-  public  class PageSwitcherVM : ViewModelBase
+    public class PageSwitcherVM : ViewModelBase
     {
-        protected User CurrentUser=new User() {Name="User 1" };
+        protected User CurrentUser = new User() { Name = "User 1" };
         private ContentControl _Contentcontrol;
         public ContentControl Contentcontrol => _Contentcontrol ??= new ContentControl();
         private User user;
-        
+
+        public User  User {get => CurrentUser; set => CurrentUser=value;}
+
         public PageSwitcherVM(User user)
         {
             this.user = user;
