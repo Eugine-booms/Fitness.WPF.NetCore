@@ -75,10 +75,11 @@ namespace Fitness.WPF.NetCore.Data
                 {
                     Name = $"User {i + 1}",
                     Birthday = DateTime.Now,
-                    Gender=i>4? Gender.Famale : Gender.Male,
-                    Email=$"Email User_{i}@mail.ru",
-                    Hight=180.0,
-                    Weight=120.0,
+                    Gender = i > 4 ? Gender.Famale : Gender.Male,
+                    Email = $"Email User_{i}@mail.ru",
+                    Hight = 180.0,
+                    Weight = 120.0,
+                    Lastlogin = DateTime.Now,
                     Password="password"
                 };
             }
