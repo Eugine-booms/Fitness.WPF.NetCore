@@ -1,17 +1,19 @@
-﻿<UserControl x:Class="Fitness.WPF.NetCore.View.UserControls.CreateNewUserUC"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:ucviewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel.UCViewModel"
-           
+             xmlns:Windows="clr-namespace:Fitness.WPF.NetCore.View.Windows" x:Class="Fitness.WPF.NetCore.View.UserControls.CreateNewUserUC"
              d:DataContext="{d:DesignInstance {x:Type ucviewmodel:CreateNewUCVM}}"
              mc:Ignorable="d" Height="500" Width="600" Background="Wheat" HorizontalAlignment="Center" VerticalAlignment="Center">
-    
+
     <Grid Background="#ffdadada" >
         <Border MaxWidth="600" MinHeight="15"  
-                Background="Transparent" VerticalAlignment="Center" Padding="40" CornerRadius="50">
+                Background="Transparent" VerticalAlignment="Center" Padding="40" CornerRadius="50" 
+                Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Windows:MainWindow}}}" 
+                Height="{Binding ActualHeight, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Windows:MainWindow}}}">
             <Border.Effect >
                 <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="15"/>
             </Border.Effect>
@@ -40,17 +42,25 @@
                         <materialDesign:PackIcon Kind="HumanFemale" Grid.Column="1" Height="30" Width="30" HorizontalAlignment="Left" />
                     </Grid>
                 </Grid>
-                
+
                 <TextBox x:Name="TextBox_Login" Text="{Binding User.Name}" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <CheckBox x:Name="PasswordShowCheckBox" Content="Показать пароль"  
+                <CheckBox x:Name="PasswordShowCheckBox" Content="Показать пароль" Padding="5" 
                           Style="{StaticResource SwitcherCheckBoxStyle}" 
                           Click="CheckBoxPasswordShow_click" />
+
+
+                <!--<PasswordBox x:Name="MyPasswordBox" Password="{Binding Text, Mode=TwoWay, ElementName=MyTextBox}"/>
+                <TextBox x:Name="MyTextBox" Text="{Binding Password, Mode=TwoWay, ElementName=MyPasswordBox}" Visibility="Collapsed" />
+                <CheckBox x:Name="ShowPasswordCharsCheckBox" Content="Show password" Checked="ShowPasswordCharsCheckBox_Checked" Unchecked="ShowPasswordCharsCheckBox_Unchecked" />-->
+
+
                 <PasswordBox x:Name="PasswordBox1_Password" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                 <PasswordBox x:Name="PasswordBox2_Password" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                              TextInput="Password1_TextInput"/>
                 <TextBox x:Name="TextBox_email" Text="{Binding User.Email}" materialDesign:HintAssist.Hint="Введите e-mail" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Button Content="Создать пользователя" Margin="0 20 0 0" />
-                <TextBox x:Name="TextBoxPassword" Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+                <TextBox x:Name="TextBoxPassword" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
+
 
 
 

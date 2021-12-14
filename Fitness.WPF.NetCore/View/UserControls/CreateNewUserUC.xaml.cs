@@ -48,5 +48,10 @@ namespace Fitness.WPF.NetCore.View.UserControls
         {
             TextBoxPassword.Text = PasswordBox1_Password.Password;
         }
+
+        private void ShowPasswordCharsCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

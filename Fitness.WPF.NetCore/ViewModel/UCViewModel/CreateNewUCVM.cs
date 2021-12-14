@@ -57,7 +57,7 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
         new LambdaCommand(OnBackToUserLoginCommandExecuted, CanBackToUserLoginCommandExecute);
         private void OnBackToUserLoginCommandExecuted(object p)
         {
-            Switcher.Switch(new ChangeUserUCVM(Switcher.pageSwitcher.User));
+            Switcher.Switch(new ChangeUserUCVM(((PageSwitcherVM)Switcher.pageSwitcher).User));
         }
         private bool CanBackToUserLoginCommandExecute(object p) => true;
         #endregion

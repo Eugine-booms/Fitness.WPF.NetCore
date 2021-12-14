@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         DataContext="{Binding Path=GetMainVM, Source={StaticResource VMLocator}}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="900" Width="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName ="Loaded">
             <i:InvokeCommandAction Command="{Binding Path=ChangeUserCommand}"/>
@@ -30,27 +30,31 @@
                 <MenuItem Header="Exit" ></MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl DockPanel.Dock="Top" >
-            <TabItem Name="MainTab" Header="Главная">
-                <StackPanel x:Name="MainTabGrid">
-                    <CheckBox Content="sdfdsf" Style="{StaticResource SwitcherCheckBoxStyle}"/>
-                    <Border MinHeight="150" MinWidth="150" Background="Gray" VerticalAlignment="Top" Padding="30" Margin="30" CornerRadius="30">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"></DropShadowEffect>
-                        </Border.Effect>
-                        <TextBlock x:Name="CaloriesСounter" FontSize="30" FontWeight="Bold" Text="Calories" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="25" />
-                    </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-                </StackPanel>
-            </TabItem>
-            <TabItem Name="diaryTab" Header="Дневник">
+            <Frame Grid.Row="1" MinHeight="300" 
+                   NavigationUIVisibility="Hidden"
+                   Content="{Binding CurrentPage}"
+                   Opacity="{Binding FrameOpacity}">
 
-            </TabItem>
-            <TabItem Name="iTab" Header="Я">
+            </Frame>
 
-            </TabItem>
-        </TabControl>
 
+            <UniformGrid Grid.Row="0" Rows="1" >
+                <UniformGrid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </UniformGrid.Resources>
+                <Button Content="Дневник" Command="{Binding bMenuDiary_Click}"/>
+                <Button Content="Рецепты" Command="{Binding bMenuRecipe_Click}" />
+                <Button Content="Профиль" Command="{Binding bMenuProfile_Click}" />
+            </UniformGrid>
+        </Grid>
 
 
 

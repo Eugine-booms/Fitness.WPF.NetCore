@@ -11,7 +11,7 @@ namespace Fitness.WPF.NetCore.Services
     {
         internal static IServiceCollection RegisterServices(this IServiceCollection services) => services
             .AddTransient<IUserDialog, UserDialog>()
-            .AddTransient<IChangeUserDialog, ChangeUserDialog>();
-
+            .AddTransient<IChangeUserDialog, ChangeUserDialog>()
+            .AddTransient<IFrameSwither, FrameSwither>();
     }
 }

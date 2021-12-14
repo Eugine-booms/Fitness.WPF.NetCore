@@ -135,7 +135,7 @@ namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
             var window = App.CurrentWindow;
             if (p != null)
             {
-                Switcher.pageSwitcher.User = CurrentUser;
+                ((PageSwitcherVM)Switcher.pageSwitcher).User = CurrentUser;
                 window.DialogResult = (bool?)Convert.ChangeType(p, typeof(bool));
             }
 
