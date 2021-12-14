@@ -6,6 +6,5 @@ namespace Fitness.WPF.NetCore.ViewModel
     {
         public MainViewModel GetMainVM => App.Services.GetRequiredService<MainViewModel>();
         public PageSwitcherVM GetCreateuserVM => App.Services.GetRequiredService<PageSwitcherVM>();
-
     }
 }

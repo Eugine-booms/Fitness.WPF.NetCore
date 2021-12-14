@@ -80,6 +80,5 @@
     <Style x:Key="TaggetTextBoxStyle" TargetType="TextBox">
         <Setter Property="Template" Value="{StaticResource TaggetTextBoxTemplate}"/>
         <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}"/>
-
     </Style>
 </ResourceDictionary>

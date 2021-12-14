@@ -38,8 +38,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="0" MinHeight="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                   NavigationUIVisibility="Hidden"
+            <Frame Grid.Row="0"  MinHeight="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                    Content="{Binding CurrentPage}"
                    Opacity="{Binding FrameOpacity}">
 

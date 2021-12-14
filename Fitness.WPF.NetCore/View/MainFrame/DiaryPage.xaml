@@ -3,12 +3,47 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Fitness.WPF.NetCore.View.MainFrame"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="DaryPage">
+      xmlns:vm="clr-namespace:Fitness.WPF.NetCore.ViewModel.FrameVM"
+      mc:Ignorable="d"
+      Title="DaryPage" ShowsNavigationUI="True" 
+      d:DataContext="{d:DesignInstance {x:Type vm:DiaryPageVM}, IsDesignTimeCreatable=True }"
+      DataContext="{vm:DiaryPageVM}" Width="780
+      " Height="515">
 
-    <Grid>
-        <TextBlock Text="DaryPage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-    </Grid>
+
+    <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontWeight" Value="DemiBold"/>
+                <Setter Property="Effect" Value="{DynamicResource MainShadowEffect}"/>
+            </Style>
+        </DockPanel.Resources>
+        <Border DockPanel.Dock="Top" HorizontalAlignment="Stretch" Background="DarkGray">
+            <Border.Resources>
+               
+            </Border.Resources>
+            <UniformGrid Rows="1">
+                <TextBlock Text="Сегодня" HorizontalAlignment="Left" />
+                <TextBlock Text="Неделя 40" HorizontalAlignment="Right" />
+                <DatePicker IsTodayHighlighted="True" HorizontalAlignment="Right" Margin="5" />
+            </UniformGrid>
+        </Border>
+        <Border DockPanel.Dock="Top" Background="AliceBlue" >
+            <DockPanel>
+                <TextBlock Text="Сводка"  DockPanel.Dock="Left" />
+                <Button Content="Подробности" Style="{DynamicResource MaterialDesignFlatButton}" DockPanel.Dock="Right"/>
+                <StackPanel/>
+            </DockPanel>
+        </Border>
+        <UserControl DataContext="{Binding }">
+            
+        </UserControl>
+        <ListBox>
+
+        </ListBox>
+
+    </DockPanel>
 </Page>
