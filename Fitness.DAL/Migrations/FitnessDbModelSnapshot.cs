@@ -19,7 +19,7 @@ namespace Fitness.DAL.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ActivitesExercise", b =>
+            modelBuilder.Entity("ActivitiesExercise", b =>
                 {
                     b.Property<int>("ActivitiesId")
                         .HasColumnType("int");
@@ -31,7 +31,7 @@ namespace Fitness.DAL.Migrations
 
                     b.HasIndex("ExercisesId");
 
-                    b.ToTable("ActivitesExercise");
+                    b.ToTable("ActivitiesExercise");
                 });
 
             modelBuilder.Entity("DishEating", b =>
@@ -49,7 +49,7 @@ namespace Fitness.DAL.Migrations
                     b.ToTable("DishEating");
                 });
 
-            modelBuilder.Entity("Fitness.DAL.Entities.Activites", b =>
+            modelBuilder.Entity("Fitness.DAL.Entities.Activities", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,6 +162,9 @@ namespace Fitness.DAL.Migrations
                     b.Property<double>("Hight")
                         .HasColumnType("float");
 
+                    b.Property<DateTime>("Lastlogin")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -176,9 +179,9 @@ namespace Fitness.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ActivitesExercise", b =>
+            modelBuilder.Entity("ActivitiesExercise", b =>
                 {
-                    b.HasOne("Fitness.DAL.Entities.Activites", null)
+                    b.HasOne("Fitness.DAL.Entities.Activities", null)
                         .WithMany()
                         .HasForeignKey("ActivitiesId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -206,7 +209,7 @@ namespace Fitness.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Fitness.DAL.Entities.Activites", b =>
+            modelBuilder.Entity("Fitness.DAL.Entities.Activities", b =>
                 {
                     b.HasOne("Fitness.DAL.Entities.User", "User")
                         .WithMany("Activites")

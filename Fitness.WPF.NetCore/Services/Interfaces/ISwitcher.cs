@@ -2,16 +2,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fitness.WPF.NetCore.ViewModel.UCViewModel
+namespace Fitness.WPF.NetCore.Services.Interfaces
 {
-    public class CreateNewUCViewModel : ViewModelBase
+  public  interface ISwitcher
     {
-       
-
+        void Navigate(ViewModelBase model);
     }
 }

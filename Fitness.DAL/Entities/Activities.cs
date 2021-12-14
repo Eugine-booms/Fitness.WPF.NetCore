@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Fitness.DAL.Entities
 {
-    public class Activites : NamedEntity
+    public class Activities : NamedEntity
     {
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }

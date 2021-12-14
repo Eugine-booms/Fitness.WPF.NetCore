@@ -10,7 +10,7 @@ namespace Fitness.DAL
         public static IServiceCollection RegisterRepository(this IServiceCollection services) => services
            .AddTransient<IRepository<User>, UserRepository>()
            .AddTransient<IRepository<Exercise>, ExerciseRepository>()
-           .AddTransient<IRepository<Activites>, ActivitesRepository>()
+           .AddTransient<IRepository<Activities>, ActivitiesRepository>()
            .AddTransient<IRepository<Dish>, DishRepository>()
            .AddTransient<IRepository<Eating>, EatingRepository>();
     }

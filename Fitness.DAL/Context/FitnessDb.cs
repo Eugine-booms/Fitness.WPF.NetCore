@@ -14,7 +14,7 @@ namespace Fitness.DAL.Context
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Eating> Eatings { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
-        public DbSet<Activites> Activities { get; set; }
+        public DbSet<Activities> Activities { get; set; }
 
         public FitnessDb(DbContextOptions<FitnessDb> options) : base(options) { }
     

@@ -1,0 +1,14 @@
+﻿<Window x:Class="Fitness.WPF.NetCore.View.Windows.PageSwitcher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fitness.WPF.NetCore.View.Windows"
+        xmlns:viewmodel="clr-namespace:Fitness.WPF.NetCore.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewmodel:PageSwitcherVM}"
+        mc:Ignorable="d"
+        Title="PageSwitcher" Height="auto" Width="auto" MinHeight="300" MinWidth="300" Background="Transparent" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+    <UniformGrid Rows="1" >
+        <ContentControl Content="{Binding Contentcontrol}"/>
+    </UniformGrid>
+</Window>

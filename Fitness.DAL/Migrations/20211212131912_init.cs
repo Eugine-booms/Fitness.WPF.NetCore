@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Fitness.DAL.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,6 +50,7 @@ namespace Fitness.DAL.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: false),
+                    Lastlogin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -101,7 +102,7 @@ namespace Fitness.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActivitesExercise",
+                name: "ActivitiesExercise",
                 columns: table => new
                 {
                     ActivitiesId = table.Column<int>(type: "int", nullable: false),
@@ -109,15 +110,15 @@ namespace Fitness.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivitesExercise", x => new { x.ActivitiesId, x.ExercisesId });
+                    table.PrimaryKey("PK_ActivitiesExercise", x => new { x.ActivitiesId, x.ExercisesId });
                     table.ForeignKey(
-                        name: "FK_ActivitesExercise_Activities_ActivitiesId",
+                        name: "FK_ActivitiesExercise_Activities_ActivitiesId",
                         column: x => x.ActivitiesId,
                         principalTable: "Activities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivitesExercise_Exercises_ExercisesId",
+                        name: "FK_ActivitiesExercise_Exercises_ExercisesId",
                         column: x => x.ExercisesId,
                         principalTable: "Exercises",
                         principalColumn: "Id",
@@ -149,14 +150,14 @@ namespace Fitness.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivitesExercise_ExercisesId",
-                table: "ActivitesExercise",
-                column: "ExercisesId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Activities_UserId",
                 table: "Activities",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivitiesExercise_ExercisesId",
+                table: "ActivitiesExercise",
+                column: "ExercisesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DishEating_EatingId",
@@ -172,7 +173,7 @@ namespace Fitness.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ActivitesExercise");
+                name: "ActivitiesExercise");
 
             migrationBuilder.DropTable(
                 name: "DishEating");

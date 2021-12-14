@@ -3,11 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Fitness.WPF.NetCore" xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:l="clr-namespace:Fitness.WPF.NetCore" 
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:VM="clr-namespace:Fitness.WPF.NetCore.ViewModel"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance {x:Type VM:MainViewModel}, IsDesignTimeCreatable=True }"
         DataContext="{Binding Path=GetMainVM, Source={StaticResource VMLocator}}"
-        Title="MainWindow" Height="450" Width="800">
-
+        Title="MainWindow" Height="900" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName ="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=ChangeUserCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
 
         <Menu DockPanel.Dock="Top" Height="50" VerticalAlignment="Top" Background="LightGray">
@@ -24,27 +32,31 @@
                 <MenuItem Header="Exit" ></MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl DockPanel.Dock="Top" >
-            <TabItem Name="MainTab" Header="Главная">
-                <StackPanel x:Name="MainTabGrid">
-                    <CheckBox Content="sdfdsf" Style="{StaticResource SwitcherCheckBoxStyle}"/>
-                    <Border MinHeight="150" MinWidth="150" Background="Gray" VerticalAlignment="Top" Padding="30" Margin="30" CornerRadius="30">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="30" Color="Black" ShadowDepth="10"></DropShadowEffect>
-                        </Border.Effect>
-                        <TextBlock x:Name="CaloriesСounter" FontSize="30" FontWeight="Bold" Text="Calories" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="25" />
-                    </Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-                </StackPanel>
-            </TabItem>
-            <TabItem Name="diaryTab" Header="Дневник">
+            <Frame Grid.Row="0" MinHeight="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                   NavigationUIVisibility="Hidden"
+                   Content="{Binding CurrentPage}"
+                   Opacity="{Binding FrameOpacity}">
 
-            </TabItem>
-            <TabItem Name="iTab" Header="Я">
+            </Frame>
 
-            </TabItem>
-        </TabControl>
 
+            <UniformGrid Grid.Row="1" Rows="1" >
+                <UniformGrid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </UniformGrid.Resources>
+                <Button Content="Дневник" Command="{Binding bMenuDiary_Click}"/>
+                <Button Content="Рецепты" Command="{Binding bMenuRecipe_Click}" />
+                <Button Content="Профиль" Command="{Binding bMenuProfile_Click}" />
+            </UniformGrid>
+        </Grid>
 
 
 

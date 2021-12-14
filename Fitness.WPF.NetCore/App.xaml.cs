@@ -41,7 +41,7 @@ namespace Fitness.WPF.NetCore
             var host = Host;
             using (var scope = Services.CreateScope())
             {
-              await  scope.ServiceProvider.GetRequiredService<DBInitializer>().InitializeAsync();  //
+             // await  scope.ServiceProvider.GetRequiredService<DBInitializer>().InitializeAsync();  //
             }
             await host.StartAsync().ConfigureAwait(false);
             base.OnStartup(e);
