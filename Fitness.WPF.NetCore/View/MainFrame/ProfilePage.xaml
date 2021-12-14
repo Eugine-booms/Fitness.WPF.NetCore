@@ -9,6 +9,6 @@
       Title="ProfilePage">
 
     <Grid>
-        <TextBlock Text="DaryPage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+        <TextBlock Text="ProfilePage" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
     </Grid>
 </Page>

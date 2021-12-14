@@ -34,11 +34,11 @@
         </Menu>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
                 <RowDefinition />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="1" MinHeight="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+            <Frame Grid.Row="0" MinHeight="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                    NavigationUIVisibility="Hidden"
                    Content="{Binding CurrentPage}"
                    Opacity="{Binding FrameOpacity}">
@@ -46,7 +46,7 @@
             </Frame>
 
 
-            <UniformGrid Grid.Row="0" Rows="1" >
+            <UniformGrid Grid.Row="1" Rows="1" >
                 <UniformGrid.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
                         <Setter Property="Margin" Value="10"/>

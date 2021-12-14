@@ -15,7 +15,7 @@ namespace Fitness.WPF.NetCore.ViewModel
 {
     internal class MainViewModel : ViewModelBase, IFrameCanSwitch
     {
-        private readonly IRepository<User> _dbUsers;
+       
         private readonly IChangeUserDialog _changeUserDialog;
         private readonly IFrameSwither _frameSwitcher;
         
@@ -31,21 +31,29 @@ namespace Fitness.WPF.NetCore.ViewModel
         }
         #endregion
 
-        public MainViewModel(IRepository<User> dbUsers, IChangeUserDialog changeUserDialog, IFrameSwither frameSwitcher)
+        #region Конструктор
+        /// <summary>
+        /// Конструктор для хоста
+        /// </summary>
+        /// <param name="dbUsers"></param>
+        /// <param name="changeUserDialog"></param>
+        /// <param name="frameSwitcher"></param>
+        public MainViewModel(IChangeUserDialog changeUserDialog, IFrameSwither frameSwitcher)
         {
-            _dbUsers = dbUsers;
             _changeUserDialog = changeUserDialog;
             _frameSwitcher = frameSwitcher;
             InitializingSwitcher(frameSwitcher);
-
-            
         }
+        /// <summary>
+        /// Конструктор для дизайнера
+        /// </summary>
         public MainViewModel()
         {
             if (!App.IsDesignTime)
                 throw new InvalidOperationException("Использование конструктора для дизайн мода");
             CurrentPage = new DiaryPage();
-        }
+        } 
+        #endregion
 
 
 
@@ -65,10 +73,7 @@ namespace Fitness.WPF.NetCore.ViewModel
 
         #endregion
 
-
-
         #region SwitchPage
-
 
         #region  Page CurrentPage Текущий Фрейм
         ///<summary> Текущий Фрейм
