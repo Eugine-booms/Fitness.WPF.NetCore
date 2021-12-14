@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+    <DropShadowEffect x:Key="MainShadowEffect" 
+                      po:Freeze="True" 
+                      BlurRadius="4" ShadowDepth="6" 
+                      Direction="320" 
+                      Color="{StaticResource MaterialDesignShadow}" 
+                      Opacity=".42" RenderingBias="Performance" />
+</ResourceDictionary>
