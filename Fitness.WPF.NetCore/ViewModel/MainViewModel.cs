@@ -44,7 +44,7 @@ namespace Fitness.WPF.NetCore.ViewModel
         {
             if (!App.IsDesignTime)
                 throw new InvalidOperationException("Использование конструктора для дизайн мода");
-
+            CurrentPage = new DiaryPage();
         }
 
 
