@@ -1,4 +1,5 @@
-﻿using Fitness.WPF.NetCore.ViewModel.UCViewModel;
+﻿using Fitness.WPF.NetCore.ViewModel.FrameVM;
+using Fitness.WPF.NetCore.ViewModel.UCViewModel;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +12,8 @@ namespace Fitness.WPF.NetCore.ViewModel
             .AddTransient<MainViewModel>()
             .AddTransient<PageSwitcherVM>()
             .AddTransient<CreateNewUCVM>()
-            .AddTransient< ChangeUserUCVM>();
+            .AddTransient< ChangeUserUCVM>()
+            .AddTransient<DiaryPageVM>();
 
 
     }
