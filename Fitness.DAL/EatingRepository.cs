@@ -13,6 +13,8 @@ namespace Fitness.DAL
     class EatingRepository : DbRepository<Eating>
     {
         public EatingRepository(FitnessDb db) : base(db) { }
-        public override IQueryable<Eating> Items => base.Items.Include(items => items.Dishes);
+        public override IQueryable<Eating> Items => base.Items
+            .Include(items => items.Dishes)
+            .Include(items=>items.Day);
     }
 }

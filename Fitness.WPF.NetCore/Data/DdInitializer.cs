@@ -50,6 +50,7 @@ namespace Fitness.WPF.NetCore.Data
 
             if (await __db.Users.AnyAsync()) return;
             await InitializeUser();
+            await InitialDays();
             await InitialDish();
             await InitialEating();
             await InitialExercise();
@@ -87,6 +88,30 @@ namespace Fitness.WPF.NetCore.Data
             await __db.SaveChangesAsync();
             __loger.LogInformation("Инициализация Пользователей выполнена за {0} мc.", timer.ElapsedMilliseconds);
         }
+        private const int __DayCount = 30;
+        private Day[] _Days;
+        private async Task InitialDays()
+        {
+            var timer = Stopwatch.StartNew();
+            __loger.LogInformation("Инициализация дней  ...");
+
+            var rnd = new Random();
+            _Days = new Day[__DayCount];
+            _Days = Enumerable.Range(1, __DayCount)
+                .Select(a =>
+                new Day
+                {
+                   User = rnd.NextItem(_Users)
+                })
+                .ToArray();
+            await __db.AddRangeAsync(_Days);
+            await __db.SaveChangesAsync();
+
+            __loger.LogInformation("Инициализация активностей выполнена за {0} мc.", timer.ElapsedMilliseconds);
+        }
+
+
+
         private const int __dishCount = 10;
         private Dish[] _dishes;
         private async Task InitialDish()
@@ -127,7 +152,7 @@ namespace Fitness.WPF.NetCore.Data
                 {
                     Name = $"Прием пищи № {d}",
                     Moment = DateTime.Now,
-                    User = rnd.NextItem(_Users),
+                    Day = rnd.NextItem(_Days),
                     Dishes=Enumerable.Range(2,3).Select(d=>rnd.NextItem(_dishes)).ToList(),
                 })
                 .ToArray();
@@ -174,8 +199,8 @@ namespace Fitness.WPF.NetCore.Data
                     Name = $"Активность  {a}",
                     Exercises = Enumerable.Range(1, 5).Select(ex => rnd.NextItem(_exercise)).ToList() ,
                     Start=DateTime.Now.AddHours(-2),
-                    Finish=DateTime.Now , 
-                    User=rnd.NextItem(_Users)
+                    Finish=DateTime.Now ,
+                    Day = rnd.NextItem(_Days),
                 })
                 .ToArray();
             await __db.AddRangeAsync(_activity);

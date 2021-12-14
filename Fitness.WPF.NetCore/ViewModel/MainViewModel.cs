@@ -10,6 +10,9 @@ using System.Windows.Controls;
 using Fitness.WPF.NetCore.View.MainFrame;
 using System.Threading.Tasks;
 using System.Threading;
+using Fitness.WPF.NetCore.Data;
+using static System.Formats.Asn1.AsnWriter;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
@@ -39,11 +42,19 @@ namespace Fitness.WPF.NetCore.ViewModel
         /// <param name="changeUserDialog"></param>
         /// <param name="frameSwitcher"></param>
         public MainViewModel(IChangeUserDialog changeUserDialog, IFrameSwither frameSwitcher)
-        {
+{
+           // initbd();
             _changeUserDialog = changeUserDialog;
             _frameSwitcher = frameSwitcher;
             InitializingSwitcher(frameSwitcher);
         }
+
+        private void initbd()
+        {
+            App.Services.GetRequiredService<DBInitializer>().InitializeAsync().Wait();
+            
+        }
+
         /// <summary>
         /// Конструктор для дизайнера
         /// </summary>

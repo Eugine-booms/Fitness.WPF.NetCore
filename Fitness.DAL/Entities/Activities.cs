@@ -9,7 +9,7 @@ namespace Fitness.DAL.Entities
     {
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
-        public virtual User User { get; set; }
+        public  Day Day { get; set; }
         public virtual ICollection<Exercise> Exercises { get; set; } = new HashSet<Exercise>();
        
     }

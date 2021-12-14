@@ -56,6 +56,9 @@ namespace Fitness.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("DayId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Finish")
                         .HasColumnType("datetime2");
 
@@ -65,6 +68,20 @@ namespace Fitness.DAL.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("DayId");
+
+                    b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("Fitness.DAL.Entities.Day", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
@@ -72,7 +89,7 @@ namespace Fitness.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Activities");
+                    b.ToTable("Days");
                 });
 
             modelBuilder.Entity("Fitness.DAL.Entities.Dish", b =>
@@ -109,18 +126,18 @@ namespace Fitness.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("DayId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Moment")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("DayId");
 
                     b.ToTable("Eatings");
                 });
@@ -211,8 +228,17 @@ namespace Fitness.DAL.Migrations
 
             modelBuilder.Entity("Fitness.DAL.Entities.Activities", b =>
                 {
-                    b.HasOne("Fitness.DAL.Entities.User", "User")
+                    b.HasOne("Fitness.DAL.Entities.Day", "Day")
                         .WithMany("Activites")
+                        .HasForeignKey("DayId");
+
+                    b.Navigation("Day");
+                });
+
+            modelBuilder.Entity("Fitness.DAL.Entities.Day", b =>
+                {
+                    b.HasOne("Fitness.DAL.Entities.User", "User")
+                        .WithMany("Days")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -220,16 +246,23 @@ namespace Fitness.DAL.Migrations
 
             modelBuilder.Entity("Fitness.DAL.Entities.Eating", b =>
                 {
-                    b.HasOne("Fitness.DAL.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.HasOne("Fitness.DAL.Entities.Day", "Day")
+                        .WithMany("Eatings")
+                        .HasForeignKey("DayId");
 
-                    b.Navigation("User");
+                    b.Navigation("Day");
+                });
+
+            modelBuilder.Entity("Fitness.DAL.Entities.Day", b =>
+                {
+                    b.Navigation("Activites");
+
+                    b.Navigation("Eatings");
                 });
 
             modelBuilder.Entity("Fitness.DAL.Entities.User", b =>
                 {
-                    b.Navigation("Activites");
+                    b.Navigation("Days");
                 });
 #pragma warning restore 612, 618
         }

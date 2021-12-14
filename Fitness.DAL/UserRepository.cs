@@ -11,7 +11,7 @@ namespace Fitness.DAL
     {
         public UserRepository(FitnessDb db) : base(db) { }
 
-        public override IQueryable<User> Items => base.Items.Include(items => items.Activites);
+        public override IQueryable<User> Items => base.Items.Include(items => items.Days);
 
     }
 }

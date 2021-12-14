@@ -59,6 +59,25 @@ namespace Fitness.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Days",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Days", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Days_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Activities",
                 columns: table => new
                 {
@@ -66,16 +85,16 @@ namespace Fitness.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Start = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Finish = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    DayId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Activities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Activities_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Activities_Days_DayId",
+                        column: x => x.DayId,
+                        principalTable: "Days",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -87,16 +106,16 @@ namespace Fitness.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Moment = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    DayId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Eatings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Eatings_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Eatings_Days_DayId",
+                        column: x => x.DayId,
+                        principalTable: "Days",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -150,9 +169,9 @@ namespace Fitness.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Activities_UserId",
+                name: "IX_Activities_DayId",
                 table: "Activities",
-                column: "UserId");
+                column: "DayId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActivitiesExercise_ExercisesId",
@@ -160,14 +179,19 @@ namespace Fitness.DAL.Migrations
                 column: "ExercisesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Days_UserId",
+                table: "Days",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DishEating_EatingId",
                 table: "DishEating",
                 column: "EatingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Eatings_UserId",
+                name: "IX_Eatings_DayId",
                 table: "Eatings",
-                column: "UserId");
+                column: "DayId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -189,6 +213,9 @@ namespace Fitness.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Eatings");
+
+            migrationBuilder.DropTable(
+                name: "Days");
 
             migrationBuilder.DropTable(
                 name: "Users");

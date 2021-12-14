@@ -12,7 +12,7 @@ namespace Fitness.WPF.NetCore.ViewModel
             .AddTransient<MainViewModel>()
             .AddTransient<PageSwitcherVM>()
             .AddTransient<CreateNewUCVM>()
-            .AddTransient< ChangeUserUCVM>()
+            .AddTransient<ChangeUserUCVM>()
             .AddTransient<DiaryPageVM>();
 
 
