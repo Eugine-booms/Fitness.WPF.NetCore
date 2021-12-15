@@ -1,5 +1,4 @@
 ﻿using Fitness.DAL.Entities.Base;
-
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +15,9 @@ namespace Fitness.DAL.Entities
         public string Email { get; set; }
         public virtual Gender Gender { get; set; }
         public DateTime Lastlogin { get; set; }
-        
+        public DateTime StartTime { get; set; }
+        public virtual Goal Goal { get; set; }
+
         public virtual ICollection<Day> Days { get; set; } = new HashSet<Day>();
               
        

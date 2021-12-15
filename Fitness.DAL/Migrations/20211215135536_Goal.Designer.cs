@@ -4,14 +4,16 @@ using Fitness.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Fitness.DAL.Migrations
 {
     [DbContext(typeof(FitnessDb))]
-    partial class FitnessDbModelSnapshot : ModelSnapshot
+    [Migration("20211215135536_Goal")]
+    partial class Goal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

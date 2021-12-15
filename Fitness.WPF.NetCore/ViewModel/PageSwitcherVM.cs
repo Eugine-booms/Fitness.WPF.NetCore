@@ -8,6 +8,7 @@ using Fitness.WPF.NetCore.ViewModel.UCViewModel;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,15 @@ namespace Fitness.WPF.NetCore.ViewModel
             CurrentUser = user;
             Switcher.pageSwitcher = this;
             Switcher.Switch(new ChangeUserUCVM(user));
+        }
+
+        public PageSwitcherVM()
+        {
+            if (!App.IsDesignTime)
+                throw new InvalidOperationException("Использование конструктора для дизайн мода");
+            CurrentUser = new User();
+            Switcher.pageSwitcher = this;
+            Switcher.Switch(new ChangeUserUCVM());
         }
 
         public void Navigate(ViewModelBase nextPage)
