@@ -5,6 +5,7 @@
         <ResourceDictionary Source="CheckBox/SwicherCheckBox.xaml"/>
         <ResourceDictionary Source="TextBox/TaggetTextBox.xaml"/>
         <ResourceDictionary Source="Resources/ShadowEffect.xaml"/>
+        <ResourceDictionary Source="ProgressBar/ProgressBarStyle.xaml"/>
 
     </ResourceDictionary.MergedDictionaries>
     
