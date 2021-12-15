@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Fitness.WPF.NetCore.ViewModel.FrameVM;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
@@ -6,5 +8,6 @@ namespace Fitness.WPF.NetCore.ViewModel
     {
         public MainViewModel GetMainVM => App.Services.GetRequiredService<MainViewModel>();
         public PageSwitcherVM GetCreateuserVM => App.Services.GetRequiredService<PageSwitcherVM>();
+        public DiaryPageVM GetDiaryVM => App.Services.GetRequiredService<DiaryPageVM>();
     }
 }
