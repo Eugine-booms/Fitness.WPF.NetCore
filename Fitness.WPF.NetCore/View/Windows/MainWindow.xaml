@@ -18,7 +18,7 @@
     </i:Interaction.Triggers>
     <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
 
-        <Menu DockPanel.Dock="Top" Height="50" VerticalAlignment="Top" Background="LightGray">
+        <Menu DockPanel.Dock="Top" Height="50" VerticalAlignment="Top" Background="LightGray" Margin="1">
             <MenuItem>
                 <MenuItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -38,8 +38,10 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Row="0"  MinHeight="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+            <Frame x:Name="MainWindowsFrame" Grid.Row="0"  MinHeight="300" VerticalAlignment="Top" HorizontalAlignment="Stretch"
                    Content="{Binding CurrentPage}"
+                   NavigationUIVisibility="Hidden"
+                   Margin="1"
                    Opacity="{Binding FrameOpacity}">
 
             </Frame>
