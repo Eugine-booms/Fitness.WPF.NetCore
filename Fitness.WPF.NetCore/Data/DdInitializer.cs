@@ -49,6 +49,8 @@ namespace Fitness.WPF.NetCore.Data
             tempTime = timer.ElapsedMilliseconds;
 
             if (await __db.Users.AnyAsync()) return;
+            await InitializeGoals();
+            await InitializeNutry();
             await InitializeUser();
             await InitialDays();
             await InitialDish();
@@ -59,14 +61,40 @@ namespace Fitness.WPF.NetCore.Data
             __loger.LogInformation("Инициализация выполнена за {0} мc.", timer.ElapsedMilliseconds - tempTime);
             timer.Stop();  
         }
+        private const int __nutrientCount = 10;
+        private Nutrition[] _Nutritions;
+
+        private async Task InitializeNutry()
+        {
+            var timer = Stopwatch.StartNew();
+            var rnd = new Random();
+            __loger.LogInformation("Инициализация нутриентов ...");
+
+            _Nutritions = new Nutrition[__nutrientCount];
+            for (int i = 0; i < __nutrientCount; i++)
+            {
+                _Nutritions[i] = new Nutrition()
+                {
+                    Carbohydrates=rnd.NextDouble()*100,
+                    Fats= rnd.NextDouble() * 100,
+                    Proteins= rnd.NextDouble() * 100
+                };
+            }
+            await __db.AddRangeAsync(_Nutritions);
+            await __db.SaveChangesAsync();
+            __loger.LogInformation("Инициализация нутриентов выполнена за {0} мc.", timer.ElapsedMilliseconds);
+        }
+
+
+
 
 
         private const int __UserCount = 10;
         private User[] _Users;
-
         private async Task InitializeUser()
         {
             var timer = Stopwatch.StartNew();
+            var rnd = new Random();
             __loger.LogInformation("Инициализация пользователей ...");
 
             _Users = new User[__UserCount];
@@ -81,13 +109,18 @@ namespace Fitness.WPF.NetCore.Data
                     Hight = 180.0,
                     Weight = 120.0,
                     Lastlogin = DateTime.Now,
-                    Password="password"
+                    Password = "password",
+                    StartTime = DateTime.Now.AddDays(-100),
+                    Goal = rnd.NextItem(_Goals),
+                    //Days = Enumerable.Range(1, 30).Select(day => rnd.NextItem(_Days))
+                    
                 };
             }
             await __db.AddRangeAsync(_Users);
             await __db.SaveChangesAsync();
             __loger.LogInformation("Инициализация Пользователей выполнена за {0} мc.", timer.ElapsedMilliseconds);
         }
+
         private const int __DayCount = 30;
         private Day[] _Days;
         private async Task InitialDays()
@@ -111,6 +144,33 @@ namespace Fitness.WPF.NetCore.Data
         }
 
 
+        private const int __goalsCount = 3;
+        private Goal[] _Goals;
+
+        private async Task InitializeGoals()
+        {
+            var timer = Stopwatch.StartNew();
+            __loger.LogInformation("Инициализация Целей ...");
+
+            _Goals = new Goal[__goalsCount];
+            for (int i = 0; i < __goalsCount; i++)
+            {
+                _Goals[i] = new Goal()
+                {
+                    ActivityLevel = ActivityLevel.Medium,
+                    DesiredWeight = 81.5,
+                    GoalForTheWeek= 0.5,
+                    NumberOfSteps=10000,
+                    Purpose=Purpose.Weightloss
+
+                };
+            }
+            await __db.AddRangeAsync(_Goals);
+            await __db.SaveChangesAsync();
+            __loger.LogInformation("Инициализация Целей выполнена за {0} мc.", timer.ElapsedMilliseconds);
+        }
+
+
 
         private const int __dishCount = 10;
         private Dish[] _dishes;
@@ -122,14 +182,12 @@ namespace Fitness.WPF.NetCore.Data
             var rnd = new Random();
             _dishes = new Dish[__dishCount];
             _dishes = Enumerable.Range(1, __dishCount)
-                .Select(d => 
-                new Dish 
+                .Select(d =>
+                new Dish
                 {
-                    Name =$"Блюдо {d}", 
-                    Calories=d*rnd.NextDouble()+rnd.NextDouble(),
-                    Carbohydrates= d * rnd.NextDouble() + rnd.NextDouble(),
-                    Fats= d * rnd.NextDouble() + rnd.NextDouble(),
-                    Proteins= d * rnd.NextDouble() + rnd.NextDouble()
+                    Name = $"Блюдо {d}",
+                    Calories = d * rnd.NextDouble() + rnd.NextDouble(),
+                    Nutrition = rnd.NextItem(_Nutritions)
                 })
                 .ToArray();
             await __db.AddRangeAsync( _dishes);
