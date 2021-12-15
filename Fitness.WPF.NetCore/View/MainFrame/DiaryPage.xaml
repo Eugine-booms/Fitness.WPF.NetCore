@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="DaryPage" ShowsNavigationUI="True" 
       d:DataContext="{d:DesignInstance {x:Type vm:DiaryPageVM}, IsDesignTimeCreatable=True }"
-      DataContext="{vm:DiaryPageVM}" Width="780
+      DataContext="{Binding Path=GetDiaryVM, Source={StaticResource VMLocator}}" Width="770
       " Height="515">
 
 
@@ -26,9 +26,13 @@
                
             </Border.Resources>
             <UniformGrid Rows="1">
-                <TextBlock Text="Сегодня" HorizontalAlignment="Left" />
+                <TextBlock Text="{Binding CurrentDay}" HorizontalAlignment="Left" />
                 <TextBlock Text="Неделя 40" HorizontalAlignment="Right" />
-                <DatePicker IsTodayHighlighted="True" HorizontalAlignment="Right" Margin="5" />
+                <DatePicker IsTodayHighlighted="True" HorizontalAlignment="Right" Margin="5" SelectedDate="{Binding SelectedDay , UpdateSourceTrigger=PropertyChanged}"  >
+                    <DatePicker.Effect>
+                        <DropShadowEffect BlurRadius="2" ShadowDepth="1"/>
+                    </DatePicker.Effect>
+                </DatePicker>
             </UniformGrid>
         </Border>
         <Border DockPanel.Dock="Top" Background="AliceBlue" >
