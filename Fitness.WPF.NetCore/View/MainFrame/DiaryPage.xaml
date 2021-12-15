@@ -7,8 +7,9 @@
       mc:Ignorable="d"
       Title="DaryPage" ShowsNavigationUI="True" 
       d:DataContext="{d:DesignInstance {x:Type vm:DiaryPageVM}, IsDesignTimeCreatable=True }"
-      DataContext="{Binding Path=GetDiaryVM, Source={StaticResource VMLocator}}" Width="770
-      " Height="515">
+      DataContext="{Binding Path=GetDiaryVM, Source={StaticResource VMLocator}}" 
+      Width="{Binding Width,  ElementName=MainWindowsFrame}" Height="{Binding Path=Height, ElementName=MainWindowsFrame}"
+      MinHeight="400" MinWidth="400">
 
 
     <DockPanel>
