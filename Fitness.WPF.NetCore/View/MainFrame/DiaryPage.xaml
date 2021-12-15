@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:Fitness.WPF.NetCore.ViewModel.FrameVM"
       mc:Ignorable="d"
+      xmlns:components="clr-namespace:Fitness.WPF.NetCore.Components" 
       Title="DaryPage" ShowsNavigationUI="True" 
       d:DataContext="{d:DesignInstance {x:Type vm:DiaryPageVM}, IsDesignTimeCreatable=True }"
       DataContext="{Binding Path=GetDiaryVM, Source={StaticResource VMLocator}}" 
@@ -24,7 +25,7 @@
         </DockPanel.Resources>
         <Border DockPanel.Dock="Top" HorizontalAlignment="Stretch" Background="DarkGray">
             <Border.Resources>
-               
+
             </Border.Resources>
             <UniformGrid Rows="1">
                 <TextBlock Text="{Binding CurrentDay}" HorizontalAlignment="Left" />
@@ -43,9 +44,16 @@
                 <StackPanel/>
             </DockPanel>
         </Border>
-        <UserControl DataContext="{Binding }">
-            
-        </UserControl>
+        <Border DockPanel.Dock="Top" Background="AliceBlue" >
+            <DockPanel>
+                <ProgressBar Height="100" Width="100" Style="{StaticResource BoomsaCircularProgressBar}" Value="68"  />
+                <ProgressBar  Height="100" Width="100" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="68"  />
+
+
+
+
+            </DockPanel>
+        </Border>
         <ListBox>
 
         </ListBox>
