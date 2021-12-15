@@ -12,6 +12,7 @@ namespace Fitness.DAL
            .AddTransient<IRepository<Exercise>, ExerciseRepository>()
            .AddTransient<IRepository<Activities>, ActivitiesRepository>()
            .AddTransient<IRepository<Dish>, DishRepository>()
-           .AddTransient<IRepository<Eating>, EatingRepository>();
+           .AddTransient<IRepository<Eating>, EatingRepository>()
+            .AddTransient<IRepository<Day>, DayRepository>();
     }
 }
