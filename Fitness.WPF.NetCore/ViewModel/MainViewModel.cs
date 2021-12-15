@@ -13,6 +13,7 @@ using System.Threading;
 using Fitness.WPF.NetCore.Data;
 using static System.Formats.Asn1.AsnWriter;
 using Microsoft.Extensions.DependencyInjection;
+using Fitness.WPF.NetCore.ViewModel.FrameVM;
 
 namespace Fitness.WPF.NetCore.ViewModel
 {
@@ -78,6 +79,7 @@ namespace Fitness.WPF.NetCore.ViewModel
         _ChangeUserCommand ??= new LambdaCommand(() => 
         {
             CurrentUser = _changeUserDialog.ChangeUser(CurrentUser);
+            CurrentUserInformation.User = CurrentUser;
         });
 
         #endregion
