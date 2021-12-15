@@ -24,7 +24,7 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
 
         #region  DateTime SelectedDay Выбранный день, по умолчанию сегодня
         ///<summary> Выбранный день, по умолчанию сегодня
-        private DateTime _SelectedDay =DateTime.Now;
+        private DateTime _SelectedDay = DateTime.Now;
         ///<summary> Выбранный день, по умолчанию сегодня
         public DateTime SelectedDay
         {
@@ -44,9 +44,9 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
         public string CurrentDay
         {
             get => _CurrentDay;
-            set 
+            set
             {
-                
+
                 Set(ref _CurrentDay, value, nameof(CurrentDay));
             }
         }
@@ -71,7 +71,7 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
                     return "Послезавтра";
                 default:
                     return difference.Days.ToString();
-            }      
+            }
         }
         #endregion
 

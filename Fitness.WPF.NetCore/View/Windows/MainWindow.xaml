@@ -17,7 +17,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <DockPanel x:Name="MainDock" Background="Gray" Margin="10">
-
         <Menu DockPanel.Dock="Top" Height="50" VerticalAlignment="Top" Background="LightGray" Margin="1">
             <MenuItem>
                 <MenuItem.Header>
