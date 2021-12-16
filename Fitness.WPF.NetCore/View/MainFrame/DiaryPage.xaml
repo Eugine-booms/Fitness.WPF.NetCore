@@ -46,10 +46,8 @@
         </Border>
         <Border DockPanel.Dock="Top" Background="AliceBlue" >
             <DockPanel>
-                <ProgressBar Height="100" Width="100" Style="{StaticResource BoomsaCircularProgressBar}" Value="68"  />
-                <ProgressBar  Height="100" Width="100" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="68"  />
-
-
+                <ProgressBar Height="100" Width="100" Style="{StaticResource BoomsaCircularProgressBar}" Value="10"/>
+               
 
 
             </DockPanel>
