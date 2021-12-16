@@ -4,10 +4,14 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace Fitness.WPF.NetCore.Converters
 {
+    [ValueConversion(typeof(object[]), typeof(Point))]
+    [MarkupExtensionReturnType(typeof(ArcEndPointConverter))]
     class ArcEndPointConverter  : IMultiValueConverter
     {
         //
@@ -20,42 +24,36 @@ namespace Fitness.WPF.NetCore.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            double num = values[0].ExtractDouble();
-            double num2 = values[1].ExtractDouble();
-            double num3 = values[2].ExtractDouble();
-            double num4 = values[3].ExtractDouble();
+            double ActualWidth = values[0].ExtractDouble();
+            double Value = values[1].ExtractDouble();
+            double Minimum = values[2].ExtractDouble();
+            double Maximum = values[3].ExtractDouble();
             if (new double[4]
             {
-                num,
-                num2,
-                num3,
-                num4
+                ActualWidth,
+                Value,
+                Minimum,
+                Maximum
             }.AnyNan())
             {
                 return Binding.DoNothing;
             }
 
-            if (values.Length == 5)
-            {
-                double num5 = values[4].ExtractDouble();
-                if (!double.IsNaN(num5) && num5 > 0.0)
-                {
-                    num2 = (num4 - num3) * num5;
-                }
-            }
 
-            double num6 = (num4 <= num3) ? 1.0 : ((num2 - num3) / (num4 - num3));
-            if (object.Equals(parameter, "MidPoint"))
-            {
-                num6 /= 2.0;
-            }
-
-            double num7 = 360.0 * num6 * (Math.PI / 180.0);
-            Point point = new Point(num / 2.0, num / 2.0);
-            double num8 = num / 2.0;
-            double num9 = Math.Cos(num7) * num8;
-            double num10 = Math.Sin(num7) * num8;
-            return new Point(point.X + num10, point.Y - num9);
+            double val = (Maximum <= Minimum) ? 1.0 : ((Value - Minimum) / (Maximum - Minimum));
+            if (object.Equals(parameter, "MidPoint")&& val >=0.5)
+                return new Point(ActualWidth / 2.0, 0);
+            
+                double valueRad = 360.0 * val * (Math.PI / 180.0);
+                Point point = new Point(ActualWidth / 2.0, ActualWidth / 2.0);
+                double radius = ActualWidth / 2.0;
+                double num9 = Math.Sin(valueRad) * radius;
+                double num10 = Math.Cos(valueRad) * radius;
+                var pointResult = new Point(point.X - num9, point.Y + num10);
+                return pointResult;
+            
+            
+            
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
