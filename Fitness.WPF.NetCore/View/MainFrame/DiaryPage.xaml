@@ -24,18 +24,15 @@
             </Style>
         </DockPanel.Resources>
         <Border DockPanel.Dock="Top" HorizontalAlignment="Stretch" Background="DarkGray">
-            <Border.Resources>
-
-            </Border.Resources>
-            <UniformGrid Rows="1">
-                <TextBlock Text="{Binding CurrentDay}" HorizontalAlignment="Left" />
-                <TextBlock Text="Неделя 40" HorizontalAlignment="Right" />
-                <DatePicker IsTodayHighlighted="True" HorizontalAlignment="Right" Margin="5" SelectedDate="{Binding SelectedDay , UpdateSourceTrigger=PropertyChanged}"  >
+            <DockPanel  HorizontalAlignment="Stretch" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                <TextBlock Text="{Binding CurrentDay}" DockPanel.Dock="Left" />
+                <TextBlock Text="Неделя 40" />
+                <DatePicker IsTodayHighlighted="True" DockPanel.Dock="Right" Margin="5" SelectedDate="{Binding SelectedDay , UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" >
                     <DatePicker.Effect>
                         <DropShadowEffect BlurRadius="2" ShadowDepth="1"/>
                     </DatePicker.Effect>
                 </DatePicker>
-            </UniformGrid>
+            </DockPanel>
         </Border>
         <Border DockPanel.Dock="Top" Background="AliceBlue" >
             <DockPanel>
@@ -46,12 +43,7 @@
         </Border>
         <Border DockPanel.Dock="Top" Background="AliceBlue" >
             <DockPanel>
-                <ProgressBar Height="100" Width="100" Style="{StaticResource BoomsaCircularProgressBar}" Value="68"  />
-                <ProgressBar  Height="100" Width="100" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="68"  />
-
-
-
-
+                <ProgressBar Height="100" Width="100" Style="{StaticResource BoomsaCircularProgressBar}" Value="10"/>
             </DockPanel>
         </Border>
         <ListBox>
