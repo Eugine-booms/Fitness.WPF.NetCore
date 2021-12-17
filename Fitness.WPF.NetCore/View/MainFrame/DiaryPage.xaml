@@ -26,7 +26,7 @@
         <Border DockPanel.Dock="Top" HorizontalAlignment="Stretch" Background="DarkGray">
             <DockPanel  HorizontalAlignment="Stretch" Visibility="Visible" RenderTransformOrigin="0.5,0.5">
                 <TextBlock Text="{Binding CurrentDay}" DockPanel.Dock="Left" />
-                <TextBlock Text="Неделя 40" />
+                <TextBlock Text="{Binding Path=WeekCount, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <DatePicker IsTodayHighlighted="True" DockPanel.Dock="Right" Margin="5" SelectedDate="{Binding SelectedDay , UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" >
                     <DatePicker.Effect>
                         <DropShadowEffect BlurRadius="2" ShadowDepth="1"/>
