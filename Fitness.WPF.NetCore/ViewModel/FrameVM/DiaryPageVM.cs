@@ -4,6 +4,7 @@ using Boomsa.WPF.BaseLib.ViewModel.Base;
 
 using Fitness.DAL.Entities;
 using Fitness.Interfaces;
+using Fitness.WPF.NetCore.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,7 +27,15 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
         public DiaryPageVM(IRepository<Day> days)
         {
             _days = days;
+            _user = CurrentUserInformation.User;
+            CurrentUserInformation.UserChangeEvent += CurrentUserInformation_UserChangeEvent;
         }
+
+        private void CurrentUserInformation_UserChangeEvent(object sender, EventArgs e)
+        {
+            WeekCount = WeekCountComputer(SelectedDay);
+        }
+
         /// <summary>
         /// Конструктор для дизайнера
         /// </summary>
@@ -34,6 +43,7 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
         {
             if (!App.IsDesignTime)
                 throw new InvalidOperationException("Использование конструктора для дизайн мода");
+            _user= new User {StartTime=DateTime.Now.AddDays(-40) };
         }
 
 
@@ -50,6 +60,7 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
             {
                 if (!Set(ref _SelectedDay, value, nameof(SelectedDay))) return;
                 CurrentDay = ConvertDayToString(value);
+                WeekCount = WeekCountComputer(value);
             }
         }
         #endregion
@@ -90,10 +101,32 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
             }
         }
         #endregion
+
+
+        #region  string WeekCount Отображение текущей недели
+        private string _WeekCount;
+        public string WeekCount
+        {
+            get => _WeekCount;
+            set => Set(ref _WeekCount, value);
+        }
+        #endregion
+
+
         #endregion
 
 
 
-        private 
+        private void GetDayInformation()
+        {
+            var dayInfo = _days.Items.SingleOrDefault(day => day.User == _user && day.Date == SelectedDay);
+        }
+        private string WeekCountComputer(DateTime dateTime)
+        {
+            var startTime = CurrentUserInformation.User.StartTime;
+            var now = dateTime;
+            var dif = (now - startTime).Days / 7;
+            return $"Неделя {dif}";
+        }
     }
 }
