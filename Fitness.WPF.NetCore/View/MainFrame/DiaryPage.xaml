@@ -43,12 +43,29 @@
         </Border>
         <Border DockPanel.Dock="Top" Background="AliceBlue" >
             <DockPanel>
+                <UniformGrid Columns="1" Rows="2" DockPanel.Dock="Left" Margin="5">
+                    <TextBlock Text="Съедено" Padding="15 0"/>
+                    <TextBlock Text="0"  HorizontalAlignment="Center"/>
+                </UniformGrid>
+                <UniformGrid Columns="1" Rows="2" DockPanel.Dock="Right"  Margin="5">
+                    <TextBlock Text="Потрачено" DockPanel.Dock="Right" Padding="15 0"/>
+                    <TextBlock Text="0"  HorizontalAlignment="Center"/>
+                </UniformGrid>
                 <ProgressBar Height="100" Width="100" Style="{StaticResource BoomsaCircularProgressBar}" Value="10"/>
             </DockPanel>
         </Border>
-        <ListBox>
+        <Border DockPanel.Dock="Top" Background="AliceBlue" >
+            <DockPanel>
+                <TextBlock Text="Питание"  DockPanel.Dock="Left" />
+                <Button Content="Подробности" Style="{DynamicResource MaterialDesignFlatButton}" DockPanel.Dock="Right"/>
+                <StackPanel/>
+            </DockPanel>
+        </Border>
+        <Border DockPanel.Dock="Top" Background="AliceBlue" >
+            <ListBox >
 
-        </ListBox>
+            </ListBox>
+        </Border>
 
     </DockPanel>
 </Page>

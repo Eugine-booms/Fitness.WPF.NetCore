@@ -22,6 +22,23 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
         private User _user;
 
 
+       
+        public DiaryPageVM(IRepository<Day> days)
+        {
+            _days = days;
+        }
+        /// <summary>
+        /// Конструктор для дизайнера
+        /// </summary>
+        public DiaryPageVM()
+        {
+            if (!App.IsDesignTime)
+                throw new InvalidOperationException("Использование конструктора для дизайн мода");
+        }
+
+
+
+        #region Верхний док
         #region  DateTime SelectedDay Выбранный день, по умолчанию сегодня
         ///<summary> Выбранный день, по умолчанию сегодня
         private DateTime _SelectedDay = DateTime.Now;
@@ -46,7 +63,6 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
             get => _CurrentDay;
             set
             {
-
                 Set(ref _CurrentDay, value, nameof(CurrentDay));
             }
         }
@@ -74,18 +90,10 @@ namespace Fitness.WPF.NetCore.ViewModel.FrameVM
             }
         }
         #endregion
+        #endregion
 
 
-        public DiaryPageVM(IRepository<Day> days)
-        {
 
-            _days = days;
-            // _user = PageSwitcherVM;
-        }
-        public DiaryPageVM()
-        {
-            if (!App.IsDesignTime)
-                throw new InvalidOperationException("Использование конструктора для дизайн мода");
-        }
+        private 
     }
 }
